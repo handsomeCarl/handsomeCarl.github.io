@@ -96,14 +96,17 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结合fastlane 组件进行自动化测试">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/fastlane-test/index.html">
 <meta property="og:site_name" content="wangwei">
+<meta property="og:description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-28T06:20:06.002Z">
+<meta property="og:updated_time" content="2019-04-28T07:31:49.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
+<meta name="twitter:title" content="结合fastlane 组件进行自动化测试">
+<meta name="twitter:description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
 
 
 
@@ -111,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/28/fastlane-test/">
 
 
 
@@ -121,7 +124,7 @@
   };
 </script>
 
-  <title>关于 | wangwei</title>
+  <title>结合fastlane 组件进行自动化测试 | wangwei</title>
   
 
 
@@ -289,67 +292,179 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/fastlane-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">关于
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">结合fastlane 组件进行自动化测试
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-28 15:31:11 / Modified: 15:31:49" itemprop="dateCreated datePublished" datetime="2019-04-28T15:31:11+08:00">2019-04-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<p>1.Xcode创建一个含有Unit Tests的项目<br>1）单元测试target设置<br>info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的<br>2.安装fastlane<br>1）sudo gem install fastlane -NV或是brew cask install fastlane我这里使用gem安装的<br>2）安装完了执行fastlane –version，确认下是否安装完成和当前使用的版本号。、&gt;3.初始化Fastlane<br>1）cd到你的项目目录执行<br>2）fastlane init<br>初始化成功后会在当前工程目录生成一个fastlane文件夹<br>Appfile主要存放App的apple_id team_id app_identifier等信息<br>Deliverfile中为发布的配置信息，一般情况用不到。<br>Fastfile是我们最应该关注的文件，也是我们的工作文件。<br>4) 添加组件<br>fastlane add_plugin xcpretty_report 用于生成测试报告<br>5）配置Fastfile相关信息<br><code>`</code><br>default_platform(:ios)</p>
+</blockquote>
+<p>platform :ios do</p>
+<p>desc “自动化测试”</p>
+<p>lane :unittest do<br>UI.message(“start  xcodebuild”)<br>xcodebuild(<br>test: true,<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>destination: “platform=iOS Simulator,name=iPhone XR,OS=12.1”,<br>)<br>UI.message(“success  xcodebuild”)</p>
+<p>xcpretty_report(<br>buildlog_path: ‘fastlane’,<br>output_path: ‘fastlane/reports’,<br>use_json_formatter: true<br>)  </p>
+<h1 id="gym"><a href="#gym" class="headerlink" title="gym("></a>gym(</h1><h1 id="xcpretty-report-html-”tests-html”"><a href="#xcpretty-report-html-”tests-html”" class="headerlink" title="xcpretty_report_html:”tests.html”,"></a>xcpretty_report_html:”tests.html”,</h1><h1 id><a href="#" class="headerlink" title=")"></a>)</h1><p>UI.message(“start  xcov”)<br>xcov(<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>html_report: “true”,<br>json_report: “true”,<br>output_directory:”quickDemoesss”<br>)<br>UI.message(“success  xcov”)</p>
+<p>desc “读取覆盖率”<br>file = File.read(File.expand_path(“/Users/edz/Desktop/quickDemo/quickDemoesss/report.json”))<br>if file<br>data = JSON.parse(file)<br>UI.message(data)<br>UI.message(data[“coverage”])<br>else<br>UI.error(“Unable to open file!”)<br>return<br>end<br>end</p>
+<p>end<br><code>`</code>  </p>
+<blockquote>
+<p>6 执行 fastlane   unittest</p>
+</blockquote>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/28/uitouch/" rel="next" title="UItouch事件被tableview拦截">
+                <i class="fa fa-chevron-left"></i> UItouch事件被tableview拦截
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/28/静态库/" rel="prev" title="创建静态私有库">
+                创建静态私有库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -378,8 +493,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -427,6 +551,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gym"><span class="nav-number">1.</span> <span class="nav-text">gym(</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xcpretty-report-html-”tests-html”"><span class="nav-number">2.</span> <span class="nav-text">xcpretty_report_html:”tests.html”,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">)</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

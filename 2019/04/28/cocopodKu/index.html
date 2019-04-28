@@ -96,17 +96,22 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。一 首先要明白两个概念:1.code repository是代码库。2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。二 创建cocopods仓库相关步骤：1.在本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/04/28/hello-world/index.html">
+<meta property="og:title" content="创建cocopods私有库">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/cocopodKu/index.html">
 <meta property="og:site_name" content="wangwei">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。一 首先要明白两个概念:1.code repository是代码库。2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。二 创建cocopods仓库相关步骤：1.在本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-28T03:43:52.565Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-5d088d4376e0da76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-195852b6c15ae626.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-a8d942bc6771a1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-28T07:33:00.617Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="创建cocopods私有库">
+<meta name="twitter:description" content="通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。一 首先要明白两个概念:1.code repository是代码库。2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。二 创建cocopods仓库相关步骤：1.在本">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -114,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/28/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/28/cocopodKu/">
 
 
 
@@ -124,7 +129,7 @@
   };
 </script>
 
-  <title>Hello World | wangwei</title>
+  <title>创建cocopods私有库 | wangwei</title>
   
 
 
@@ -312,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/cocopodKu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -329,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">创建cocopods私有库
 
               
             
@@ -355,9 +360,13 @@
                 
               
 
-              <time title="Created: 2019-04-28 11:43:52" itemprop="dateCreated datePublished" datetime="2019-04-28T11:43:52+08:00">2019-04-28</time>
+              <time title="Created: 2019-04-28 15:32:40 / Modified: 15:33:00" itemprop="dateCreated datePublished" datetime="2019-04-28T15:32:40+08:00">2019-04-28</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -390,15 +399,22 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。<br>一 首先要明白两个概念:<br>1.code repository是代码库。<br>2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。<br>二 创建cocopods仓库相关步骤：<br>1.在本地创建lib仓库<br>pod  lib create    podsDemoSdk<br>1）相关目录结构如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.22.png"><br>2）创建时候相关信息如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-5d088d4376e0da76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.35.39.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-195852b6c15ae626.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.00.png"></p>
+<ol start="2">
+<li>将本地仓库关联到远端git仓库 我们用的是gitlab 创建的git仓库<br>1）git add .  #不但可以[跟单]文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了，注意空格<br>2）git commit -m “注释” #把文件提交到仓库<br>3）git remote add origin  远程仓库地址              #本地关联远程仓库<br>4）git push -u origin master #把本地库的所有内容推送到远程库上（第一次需要加-u，后面就不用加了）</li>
+<li>将相关sdk 代码放在 podsDemoSdk/Classes 目录下<br>4.配置相关spec 文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-a8d942bc6771a1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>配置相关远程仓库地址和相关内容，按着图中格式配就行了。</li>
+<li><p>验证podspec的有效性，打开终端 cd 到podsDemoSdk的目录中<br>接着运行pod lib lint<br>如果有警告，会导致无法通过，需要添加–allow-warnings<br>如果使用了c函数相关的，需要添加–use-libraries<br>显示pass 字眼 验证通过后，把代码提交到仓库即可<br>5.把代码提交到仓库即可<br>git add -A<br>git commit -m “add pod files”<br>git remote add origin 远程仓库     //连接远程github项目<br>git tag ‘0.1.0’  //这里的版本号注意要和podspec文件中的版本号统一<br>git push –tags        //将本地tag更新到github项目上去<br>git push origin master    //将本地项目更新到github项目上去</p>
+</li>
+<li><p>创建一个spec私有仓库<br>现在GitLab上面创建一个私有仓库，用来存放私有依赖代码库的配置<br>在终端执行命令：<br>pod repo add  podsDemoSpecs spec仓库地址</p>
+</li>
+</ol>
+<p>也就是在~/.cocoapods/repo目录下添加了一个以你的私有repo为名的文件夹</p>
+<p>现在为止，我们已经在本地得到我们自己的私有仓库 podsDemoSpecs ，这是一个空的仓库</p>
+<p>7.关联代码库和配置仓库<br>pod repo push podsDemoSpecs podsDemoSdk.podspec –use-libraries –allow-warnings</p>
+<p>至此仓库已经创建完成</p>
+<p>三，下面是在项目中的应用，直接在podfile文件中配置相关信息就好，pod install即可 </p>
+<p>谢谢，如果不足，请指正谢谢!</p>
 
       
     </div>
@@ -429,14 +445,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/28/静态库/" rel="next" title="创建静态私有库">
+                <i class="fa fa-chevron-left"></i> 创建静态私有库
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/28/my-hello-world/" rel="prev" title="使用gitlab+fastlane进行自动化构建">
-                使用gitlab+fastlane进行自动化构建 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/28/xcode10/" rel="prev" title="xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash">
+                xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,17 +501,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -539,23 +550,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
