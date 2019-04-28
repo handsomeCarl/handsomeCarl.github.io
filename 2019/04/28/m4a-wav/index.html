@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="还是因为音频合成的原因，合成的音频是m4a 格式，上传到七牛后，形成的链接，浏览器可以播放。但是手机不行，m4a 是偏视频格式，用原有的avplayer 方法不能播放，所以需要进行转化后上传播放。  代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音频格式转化 m4a 转 wav">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/m4a-wav/index.html">
+<meta property="og:site_name" content="wangwei">
+<meta property="og:description" content="还是因为音频合成的原因，合成的音频是m4a 格式，上传到七牛后，形成的链接，浏览器可以播放。但是手机不行，m4a 是偏视频格式，用原有的avplayer 方法不能播放，所以需要进行转化后上传播放。  代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-28T11:55:48.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音频格式转化 m4a 转 wav">
+<meta name="twitter:description" content="还是因为音频合成的原因，合成的音频是m4a 格式，上传到七牛后，形成的链接，浏览器可以播放。但是手机不行，m4a 是偏视频格式，用原有的avplayer 方法不能播放，所以需要进行转化后上传播放。  代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/28/m4a-wav/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>音频格式转化 m4a 转 wav | wangwei</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wangwei</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">0</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">12</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/m4a-wav/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">音频格式转化 m4a 转 wav
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-28 19:54:54 / Modified: 19:55:48" itemprop="dateCreated datePublished" datetime="2019-04-28T19:54:54+08:00">2019-04-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>还是因为音频合成的原因，合成的音频是m4a 格式，上传到七牛后，形成的链接，浏览器可以播放。但是手机不行，m4a 是偏视频格式，用原有的avplayer 方法不能播放，所以需要进行转化后上传播放。</p>
+</blockquote>
+<h4 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">-(void)convetM4aToWav:(NSURL *)originalUrl</span><br><span class="line">destUrl:(NSString *)destUrlStr</span><br><span class="line">completed:(void (^)(NSError *error)) completed &#123;</span><br><span class="line">NSLog(@&quot;\n\n\nM4A-WAV\n\n\n&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:destUrlStr]) &#123;</span><br><span class="line">[[NSFileManager defaultManager] removeItemAtPath:destUrlStr error:nil];</span><br><span class="line">&#125;</span><br><span class="line">NSURL *destUrl     = [NSURL fileURLWithPath:destUrlStr];</span><br><span class="line">AVURLAsset *songAsset = [AVURLAsset URLAssetWithURL:originalUrl options:nil];</span><br><span class="line"></span><br><span class="line">//读取原始文件信息</span><br><span class="line">NSError *error = nil;</span><br><span class="line">AVAssetReader *assetReader = [AVAssetReader assetReaderWithAsset:songAsset error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog (@&quot;error: %@&quot;, error);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">AVAssetReaderOutput *assetReaderOutput = [AVAssetReaderAudioMixOutput</span><br><span class="line">assetReaderAudioMixOutputWithAudioTracks:songAsset.tracks</span><br><span class="line">audioSettings: nil];</span><br><span class="line">if (![assetReader canAddOutput:assetReaderOutput]) &#123;</span><br><span class="line">NSLog (@&quot;can&apos;t add reader output... die!&quot;);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">[assetReader addOutput:assetReaderOutput];</span><br><span class="line"></span><br><span class="line">AVAssetWriter *assetWriter = [AVAssetWriter assetWriterWithURL:destUrl</span><br><span class="line">fileType:AVFileTypeCoreAudioFormat</span><br><span class="line">error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog (@&quot;error: %@&quot;, error);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">AudioChannelLayout channelLayout;</span><br><span class="line">memset(&amp;channelLayout, 0, sizeof(AudioChannelLayout));</span><br><span class="line">channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;</span><br><span class="line">NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:</span><br><span class="line">[NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,</span><br><span class="line">[NSNumber numberWithFloat:8000], AVSampleRateKey,</span><br><span class="line">[NSNumber numberWithInt:2], AVNumberOfChannelsKey,</span><br><span class="line">[NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,</span><br><span class="line">[NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,</span><br><span class="line">[NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,</span><br><span class="line">[NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,</span><br><span class="line">nil];</span><br><span class="line">AVAssetWriterInput *assetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio</span><br><span class="line">outputSettings:outputSettings];</span><br><span class="line">if ([assetWriter canAddInput:assetWriterInput]) &#123;</span><br><span class="line">[assetWriter addInput:assetWriterInput];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSLog (@&quot;can&apos;t add asset writer input... die!&quot;);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">assetWriterInput.expectsMediaDataInRealTime = NO;</span><br><span class="line"></span><br><span class="line">[assetWriter startWriting];</span><br><span class="line">[assetReader startReading];</span><br><span class="line"></span><br><span class="line">AVAssetTrack *soundTrack = [songAsset.tracks objectAtIndex:0];</span><br><span class="line">CMTime startTime = CMTimeMake (0, soundTrack.naturalTimeScale);</span><br><span class="line">[assetWriter startSessionAtSourceTime:startTime];</span><br><span class="line"></span><br><span class="line">__block UInt64 convertedByteCount = 0;</span><br><span class="line"></span><br><span class="line">dispatch_queue_t mediaInputQueue = dispatch_queue_create(&quot;mediaInputQueue&quot;, NULL);</span><br><span class="line">[assetWriterInput requestMediaDataWhenReadyOnQueue:mediaInputQueue</span><br><span class="line">usingBlock: ^</span><br><span class="line">&#123;</span><br><span class="line">while (assetWriterInput.readyForMoreMediaData) &#123;</span><br><span class="line">CMSampleBufferRef nextBuffer = [assetReaderOutput copyNextSampleBuffer];</span><br><span class="line">if (nextBuffer) &#123;</span><br><span class="line">// append buffer</span><br><span class="line">[assetWriterInput appendSampleBuffer: nextBuffer];</span><br><span class="line">//                 NSLog (@&quot;appended a buffer (%zu bytes)&quot;,</span><br><span class="line">//                        CMSampleBufferGetTotalSampleSize (nextBuffer));</span><br><span class="line">convertedByteCount += CMSampleBufferGetTotalSampleSize (nextBuffer);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line">[assetWriterInput markAsFinished];</span><br><span class="line">[assetWriter finishWritingWithCompletionHandler:^&#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line">[assetReader cancelReading];</span><br><span class="line">NSDictionary *outputFileAttributes = [[NSFileManager defaultManager]</span><br><span class="line">attributesOfItemAtPath:[destUrl path]</span><br><span class="line">error:nil];</span><br><span class="line">NSLog (@&quot;FlyElephant %lld&quot;,[outputFileAttributes fileSize]);</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">NSLog(@&quot;转换结束&quot;);</span><br><span class="line">// 删除临时temprecordAudio.m4a文件</span><br><span class="line">NSError *removeError = nil;</span><br><span class="line"></span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:[originalUrl path]]) &#123;</span><br><span class="line">BOOL success = [[NSFileManager defaultManager] removeItemAtPath:[originalUrl path] error:&amp;removeError];</span><br><span class="line">if (!success) &#123;</span><br><span class="line">NSLog(@&quot;删除临时temprecordAudio.m4a文件失败:%@&quot;,removeError);</span><br><span class="line">completed(removeError);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">NSLog(@&quot;删除临时temprecordAudio.m4a文件:%@成功&quot;,originalUrl);</span><br><span class="line">completed(removeError);</span><br><span class="line">&#125;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">NSLog(@&quot;文件不存在&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>文档目录相关代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)documentPath</span><br><span class="line">&#123;</span><br><span class="line">NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;</span><br><span class="line">return documentPath;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)audioCacheFolder</span><br><span class="line">&#123;</span><br><span class="line">NSString *audioFolder = [[self documentPath] stringByAppendingPathComponent:AUDIOCACHE];</span><br><span class="line">if (![FILEMANAGER fileExistsAtPath:audioFolder]) &#123;</span><br><span class="line">NSError *error = nil;</span><br><span class="line">[FILEMANAGER createDirectoryAtPath:audioFolder withIntermediateDirectories:YES attributes:nil error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog(@&quot;音频文件夹创建失败----%@&quot;, error);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return audioFolder;</span><br><span class="line">&#125;</span><br><span class="line">//用url作为文件名</span><br><span class="line">- (NSString *)audioFilePath:(NSString *)audioURL</span><br><span class="line">&#123;</span><br><span class="line">NSString *fileName = [audioURL stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;-&quot;];</span><br><span class="line">return [[self audioCacheFolder] stringByAppendingPathComponent:fileName];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/28/xcodeBug/" rel="next" title="Xcode 10 打包导出时报错Failed to verify bitcode in">
+                <i class="fa fa-chevron-left"></i> Xcode 10 打包导出时报错Failed to verify bitcode in
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="wangwei">
+            
+              <p class="site-author-name" itemprop="name">wangwei</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码如下："><span class="nav-number">1.</span> <span class="nav-text">代码如下：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangwei</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

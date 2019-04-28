@@ -257,7 +257,7 @@
       
     
 
-    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">11</span></a>
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">12</span></a>
 
   </li>
 
@@ -293,6 +293,153 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/m4a-wav/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/28/m4a-wav/" class="post-title-link" itemprop="url">音频格式转化 m4a 转 wav</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-28 19:54:54 / Modified: 19:55:48" itemprop="dateCreated datePublished" datetime="2019-04-28T19:54:54+08:00">2019-04-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>还是因为音频合成的原因，合成的音频是m4a 格式，上传到七牛后，形成的链接，浏览器可以播放。但是手机不行，m4a 是偏视频格式，用原有的avplayer 方法不能播放，所以需要进行转化后上传播放。</p>
+</blockquote>
+<h4 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">-(void)convetM4aToWav:(NSURL *)originalUrl</span><br><span class="line">destUrl:(NSString *)destUrlStr</span><br><span class="line">completed:(void (^)(NSError *error)) completed &#123;</span><br><span class="line">NSLog(@&quot;\n\n\nM4A-WAV\n\n\n&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:destUrlStr]) &#123;</span><br><span class="line">[[NSFileManager defaultManager] removeItemAtPath:destUrlStr error:nil];</span><br><span class="line">&#125;</span><br><span class="line">NSURL *destUrl     = [NSURL fileURLWithPath:destUrlStr];</span><br><span class="line">AVURLAsset *songAsset = [AVURLAsset URLAssetWithURL:originalUrl options:nil];</span><br><span class="line"></span><br><span class="line">//读取原始文件信息</span><br><span class="line">NSError *error = nil;</span><br><span class="line">AVAssetReader *assetReader = [AVAssetReader assetReaderWithAsset:songAsset error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog (@&quot;error: %@&quot;, error);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">AVAssetReaderOutput *assetReaderOutput = [AVAssetReaderAudioMixOutput</span><br><span class="line">assetReaderAudioMixOutputWithAudioTracks:songAsset.tracks</span><br><span class="line">audioSettings: nil];</span><br><span class="line">if (![assetReader canAddOutput:assetReaderOutput]) &#123;</span><br><span class="line">NSLog (@&quot;can&apos;t add reader output... die!&quot;);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">[assetReader addOutput:assetReaderOutput];</span><br><span class="line"></span><br><span class="line">AVAssetWriter *assetWriter = [AVAssetWriter assetWriterWithURL:destUrl</span><br><span class="line">fileType:AVFileTypeCoreAudioFormat</span><br><span class="line">error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog (@&quot;error: %@&quot;, error);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">AudioChannelLayout channelLayout;</span><br><span class="line">memset(&amp;channelLayout, 0, sizeof(AudioChannelLayout));</span><br><span class="line">channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;</span><br><span class="line">NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:</span><br><span class="line">[NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,</span><br><span class="line">[NSNumber numberWithFloat:8000], AVSampleRateKey,</span><br><span class="line">[NSNumber numberWithInt:2], AVNumberOfChannelsKey,</span><br><span class="line">[NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,</span><br><span class="line">[NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,</span><br><span class="line">[NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,</span><br><span class="line">[NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,</span><br><span class="line">nil];</span><br><span class="line">AVAssetWriterInput *assetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio</span><br><span class="line">outputSettings:outputSettings];</span><br><span class="line">if ([assetWriter canAddInput:assetWriterInput]) &#123;</span><br><span class="line">[assetWriter addInput:assetWriterInput];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSLog (@&quot;can&apos;t add asset writer input... die!&quot;);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">assetWriterInput.expectsMediaDataInRealTime = NO;</span><br><span class="line"></span><br><span class="line">[assetWriter startWriting];</span><br><span class="line">[assetReader startReading];</span><br><span class="line"></span><br><span class="line">AVAssetTrack *soundTrack = [songAsset.tracks objectAtIndex:0];</span><br><span class="line">CMTime startTime = CMTimeMake (0, soundTrack.naturalTimeScale);</span><br><span class="line">[assetWriter startSessionAtSourceTime:startTime];</span><br><span class="line"></span><br><span class="line">__block UInt64 convertedByteCount = 0;</span><br><span class="line"></span><br><span class="line">dispatch_queue_t mediaInputQueue = dispatch_queue_create(&quot;mediaInputQueue&quot;, NULL);</span><br><span class="line">[assetWriterInput requestMediaDataWhenReadyOnQueue:mediaInputQueue</span><br><span class="line">usingBlock: ^</span><br><span class="line">&#123;</span><br><span class="line">while (assetWriterInput.readyForMoreMediaData) &#123;</span><br><span class="line">CMSampleBufferRef nextBuffer = [assetReaderOutput copyNextSampleBuffer];</span><br><span class="line">if (nextBuffer) &#123;</span><br><span class="line">// append buffer</span><br><span class="line">[assetWriterInput appendSampleBuffer: nextBuffer];</span><br><span class="line">//                 NSLog (@&quot;appended a buffer (%zu bytes)&quot;,</span><br><span class="line">//                        CMSampleBufferGetTotalSampleSize (nextBuffer));</span><br><span class="line">convertedByteCount += CMSampleBufferGetTotalSampleSize (nextBuffer);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line">[assetWriterInput markAsFinished];</span><br><span class="line">[assetWriter finishWritingWithCompletionHandler:^&#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line">[assetReader cancelReading];</span><br><span class="line">NSDictionary *outputFileAttributes = [[NSFileManager defaultManager]</span><br><span class="line">attributesOfItemAtPath:[destUrl path]</span><br><span class="line">error:nil];</span><br><span class="line">NSLog (@&quot;FlyElephant %lld&quot;,[outputFileAttributes fileSize]);</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">NSLog(@&quot;转换结束&quot;);</span><br><span class="line">// 删除临时temprecordAudio.m4a文件</span><br><span class="line">NSError *removeError = nil;</span><br><span class="line"></span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:[originalUrl path]]) &#123;</span><br><span class="line">BOOL success = [[NSFileManager defaultManager] removeItemAtPath:[originalUrl path] error:&amp;removeError];</span><br><span class="line">if (!success) &#123;</span><br><span class="line">NSLog(@&quot;删除临时temprecordAudio.m4a文件失败:%@&quot;,removeError);</span><br><span class="line">completed(removeError);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">NSLog(@&quot;删除临时temprecordAudio.m4a文件:%@成功&quot;,originalUrl);</span><br><span class="line">completed(removeError);</span><br><span class="line">&#125;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">NSLog(@&quot;文件不存在&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>文档目录相关代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)documentPath</span><br><span class="line">&#123;</span><br><span class="line">NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;</span><br><span class="line">return documentPath;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)audioCacheFolder</span><br><span class="line">&#123;</span><br><span class="line">NSString *audioFolder = [[self documentPath] stringByAppendingPathComponent:AUDIOCACHE];</span><br><span class="line">if (![FILEMANAGER fileExistsAtPath:audioFolder]) &#123;</span><br><span class="line">NSError *error = nil;</span><br><span class="line">[FILEMANAGER createDirectoryAtPath:audioFolder withIntermediateDirectories:YES attributes:nil error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog(@&quot;音频文件夹创建失败----%@&quot;, error);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return audioFolder;</span><br><span class="line">&#125;</span><br><span class="line">//用url作为文件名</span><br><span class="line">- (NSString *)audioFilePath:(NSString *)audioURL</span><br><span class="line">&#123;</span><br><span class="line">NSString *fileName = [audioURL stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;-&quot;];</span><br><span class="line">return [[self audioCacheFolder] stringByAppendingPathComponent:fileName];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1680,243 +1827,6 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/my-hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/28/my-hello-world/" class="post-title-link" itemprop="url">使用gitlab+fastlane进行自动化构建</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-28 14:21:14 / Modified: 15:22:11" itemprop="dateCreated datePublished" datetime="2019-04-28T14:21:14+08:00">2019-04-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>持续集成优点：<br>1、缩减开发周期，快速迭代版本</p>
-</blockquote>
-<blockquote>
-<p>2、提供分发效率，测试人员以及相关人员无需等待开发人员打包</p>
-</blockquote>
-<blockquote>
-<p>3、减少重复操作，高效打包，减轻开发人员工作量。</p>
-</blockquote>
-<blockquote>
-<p>4 . 将代码推送到新的分支，CI 服务器就会为您运行测试。 如果 job 都是绿色 的，你的代码是 OK 的。</p>
-</blockquote>
-<blockquote>
-<p>5 . 如果给定分支中的所有测试都是绿色的，则可以让 CI 服务器自动将代码部署到生产环境中。 这就是所谓的连续部署(Continuous Deployment) 。</p>
-</blockquote>
-<blockquote>
-<p>6 . 减少 code review 时间</p>
-</blockquote>
-<h2 id="搭建方法"><a href="#搭建方法" class="headerlink" title="搭建方法"></a>搭建方法</h2><h3 id="运行环境要求"><a href="#运行环境要求" class="headerlink" title="运行环境要求"></a>运行环境要求</h3><ul>
-<li>gitlab</li>
-<li>gitlabrunner</li>
-<li>fastlane</li>
-<li>钉钉机器人</li>
-</ul>
-<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><h4 id="1-安装-gitlab-runner"><a href="#1-安装-gitlab-runner" class="headerlink" title="1. 安装 gitlab runner"></a>1. 安装 gitlab runner</h4><ul>
-<li>Install GitLab Runner on macOS（我的是 mac 环境所以选择的 Install GitLab Runner on macOS）<br>*1.Download the binary for your system</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64</span><br></pre></td></tr></table></figure>
-<ul>
-<li>2.Give it permissions to execute:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/local/bin/gitlab-runner</span><br></pre></td></tr></table></figure>
-<h4 id="2-注册-gitlab-runner"><a href="#2-注册-gitlab-runner" class="headerlink" title="2. 注册 gitlab runner"></a>2. 注册 gitlab runner</h4><ul>
-<li>To register a Runner under macOS:<br>*1. Run the following command:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner register</span><br></pre></td></tr></table></figure>
-<ul>
-<li>2Enter your GitLab instance URL: （你 gitlab 的地址）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )</span><br><span class="line">https://gitlab.com</span><br></pre></td></tr></table></figure>
-<ul>
-<li><ol start="3">
-<li>Enter the token you obtained to register the Runner:（CI/CD 中项目的 token）</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci token for this runner</span><br><span class="line">xxx</span><br></pre></td></tr></table></figure>
-<ul>
-<li><ol start="4">
-<li>Enter a description for the Runner, you can change this later in GitLab’s UI:</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci description for this runner</span><br><span class="line">[hostame] my-runner</span><br></pre></td></tr></table></figure>
-<ul>
-<li><ol start="5">
-<li>Enter the <a href="https://docs.gitlab.com/ee/ci/runners/#using-tags" target="_blank" rel="noopener">tags associated with the Runner</a>, you can change this later in GitLab’s UI:</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci tags for this runner (comma separated):</span><br><span class="line">my-tag,another-tag</span><br></pre></td></tr></table></figure>
-<ul>
-<li>6 Enter the <a href="https://docs.gitlab.com/runner/executors/README.html" target="_blank" rel="noopener">Runner executor</a>:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell:</span><br><span class="line">shel</span><br></pre></td></tr></table></figure>
-<h4 id="3-编写-yml-文件"><a href="#3-编写-yml-文件" class="headerlink" title="3. 编写 yml 文件"></a>3. 编写 yml 文件</h4><p><a href="https://docs.gitlab.com/ee/ci/yaml/README.html" target="_blank" rel="noopener">配置项目的 yml 文件进行相应的 job 操作</a><br><a href="https://docs.gitlab.com/ee/ci/yaml/README.html#validate-the-gitlab-ciyml" target="_blank" rel="noopener">校验 yml 文件是否正确</a><br><a href="https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-exec" target="_blank" rel="noopener">本地调试 yml 文件</a><br>安装 jq 这个输出报告的时候用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install jq</span><br></pre></td></tr></table></figure>
-<p>下面是我的 yml 文件仅供参考</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">//构建阶段</span><br><span class="line">stages:</span><br><span class="line">- build</span><br><span class="line">- buildAndUpload</span><br><span class="line">- failure</span><br><span class="line"></span><br><span class="line">//构建前配置</span><br><span class="line">before_script:</span><br><span class="line">- export LANG=en_US.UTF-8</span><br><span class="line">- export FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT=120</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># build for branch test   build and upload to pgyer.</span><br><span class="line">job1:</span><br><span class="line">//注册 runner tag名 可以多个</span><br><span class="line">tags:</span><br><span class="line">- wangweitags</span><br><span class="line">stage: buildAndUpload</span><br><span class="line">script:</span><br><span class="line"># - sh ./Shell/dingtalk.sh &quot;新版本&quot; &quot;# 构建新版本（justademo）&quot;</span><br><span class="line">- echo $(pwd)</span><br><span class="line">- echo &quot;build job1&quot;</span><br><span class="line">- pod install</span><br><span class="line">- git reset --hard</span><br><span class="line">// fastlane 自动化构建</span><br><span class="line">- fastlane dev</span><br><span class="line">// 输出相关的git commit等相关信息</span><br><span class="line">- export pgyerDes=`git log -10 --oneline | cut -d &quot; &quot; -f2- | grep -E &apos;^\[.*|.*finish$&apos;`</span><br><span class="line">- echo $&#123;pgyerDes&#125;</span><br><span class="line">- echo $(pwd)</span><br><span class="line">- echo $(ls)</span><br><span class="line">- export result=$(curl -# -F &quot;file=@../product/LZMDYW.ipa&quot; -F &quot;_api_key=2c34b4faa9e0559667c828f415f7ebee&quot; -F &quot;userKey=1ce44e894fbe779bbf23e75d12c482d8&quot; -F &quot;buildUpdateDescription=$&#123;pgyerDes&#125;&quot;  https://www.pgyer.com/apiv2/app/upload)</span><br><span class="line">- echo $&#123;result&#125; | jq</span><br><span class="line">- export buildKey=`echo $&#123;result&#125; | jq  &apos;. | .data.buildKey&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">buildQRCodeURL=`echo $&#123;result&#125; | jq  &apos;. | .data.buildQRCodeURL&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">buildVersion=`echo $&#123;result&#125; | jq  &apos;. | .data.buildVersion+&quot;(&quot;+.data.buildBuildVersion+&quot;)&quot;&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">buildUpdated=`echo $&#123;result&#125; | jq  &apos;. | .data.buildUpdated&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">change_log=`git log -20 --oneline | cut -d &quot; &quot; -f2- | grep -E &apos;^\[.*|.*finish$&apos; | awk &apos;&#123;&#123;printf&quot;##### %s; \n&quot;,$0&#125;&#125;&apos;`</span><br><span class="line">- export text=&quot;### 版本&quot;$&#123;buildVersion&#125;&quot; \n &gt; 更新记录 \n\n &gt; &quot;$&#123;change_log&#125;&quot; \n\n &gt; ![screenshot](&quot;$&#123;buildQRCodeURL&#125;&quot;)\n##### [下载链接](https://www.pgyer.com/&quot;$&#123;buildKey&#125;&quot;)\n\n###### 上传日期:&quot;$&#123;buildUpdated&#125;&quot;&quot;</span><br><span class="line">//钉钉脚本</span><br><span class="line">- sh ./Shell/dingtalk.sh &quot;新版本&quot; &quot;$text&quot;</span><br><span class="line">only:</span><br><span class="line">- /^test.*$/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># build for branch  only build.</span><br><span class="line">job2:</span><br><span class="line">tags:</span><br><span class="line">- wangweitags</span><br><span class="line">stage: build</span><br><span class="line">script:</span><br><span class="line"># - sh ./Shell/dingtalk.sh &quot;新版本&quot; &quot;# 构建新版本（justademo）&quot;</span><br><span class="line">- echo $(pwd)</span><br><span class="line">- echo &quot;build job2&quot;</span><br><span class="line">- pod install</span><br><span class="line">- git reset --hard</span><br><span class="line">//fastlen 构建</span><br><span class="line">- fastlane CI_dev</span><br><span class="line">only:</span><br><span class="line">- dev</span><br><span class="line">- master</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># notify when a build has errored</span><br><span class="line">build_failure_job:</span><br><span class="line">tags:</span><br><span class="line">- wangweitags</span><br><span class="line">stage: failure</span><br><span class="line">script:</span><br><span class="line">// 丁丁脚本</span><br><span class="line">- sh ../Shell/dingtalk.sh &quot;新版本&quot; &quot;# 构建失败（LZMDYW）&quot;</span><br><span class="line">when: on_failure</span><br></pre></td></tr></table></figure>
-<h4 id="4-fastlane-构建"><a href="#4-fastlane-构建" class="headerlink" title="4. fastlane 构建"></a>4. fastlane 构建</h4><p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p>
-<h5 id="（1）安装-xcode-命令行工具"><a href="#（1）安装-xcode-命令行工具" class="headerlink" title="（1）安装 xcode 命令行工具"></a>（1）安装 xcode 命令行工具</h5><ul>
-<li>xcode-select –install，如果没有安装，会弹出对话框，点击安装。如果提示 xcode-select: error: command line tools are already installed, use “Software Update” to install updates 表示已经安装</li>
-</ul>
-<p>#####（2） 安装 Fastlane<br>sudo gem install fastlane -NV 或是 brew cask install fastlane 我这里使用 gem 安装的<br>安装完了执行 fastlane –version，确认下是否安装完成和当前使用的版本号。</p>
-<h5 id="（3）初始化-Fastlane"><a href="#（3）初始化-Fastlane" class="headerlink" title="（3）初始化 Fastlane"></a>（3）初始化 Fastlane</h5><p>cd 到你的项目目录执行<br>fastlane init</p>
-<h5 id="（4）打包到蒲公英"><a href="#（4）打包到蒲公英" class="headerlink" title="（4）打包到蒲公英"></a>（4）打包到蒲公英</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane add_plugin pgyer</span><br></pre></td></tr></table></figure>
-<ul>
-<li>自己的 fastlane 脚本</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">default_platform(:ios)</span><br><span class="line"></span><br><span class="line">platform :ios do</span><br><span class="line">desc &quot;Description of what the lane does&quot;</span><br><span class="line"></span><br><span class="line">lane :dev do</span><br><span class="line"></span><br><span class="line">sigh(force: true,</span><br><span class="line">username: &quot;开发者账号&quot;,</span><br><span class="line">app_identifier: &quot;bundleid&quot;,</span><br><span class="line">output_path: &apos;.ipa包输出路径&apos;,</span><br><span class="line">adhoc: true （是否adhoc）</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">build_app(</span><br><span class="line">workspace: &quot;XXXX.xcworkspace&quot;,</span><br><span class="line">configuration: &quot;Debug&quot;, （scheme配置）</span><br><span class="line">scheme: &quot;XXXX&quot;,</span><br><span class="line">export_method: &quot;ad-hoc&quot;,</span><br><span class="line">output_directory:&quot;.ipa包输出路径&quot;,</span><br><span class="line">include_bitcode:true,</span><br><span class="line">)</span><br><span class="line">// 打包到蒲公英</span><br><span class="line">pgyer(</span><br><span class="line">api_key: &quot;&quot;,</span><br><span class="line">user_key: &quot;&quot;,</span><br><span class="line">update_description: &quot;scheme is dev, update by fastlane&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">lane :CI_dev do</span><br><span class="line"></span><br><span class="line">sigh(force: true,</span><br><span class="line">username: &quot;开发者账号&quot;,</span><br><span class="line">app_identifier: &quot;bundleid&quot;,</span><br><span class="line">output_path: &apos;.ipa包输出路径&apos;,</span><br><span class="line">adhoc: true （是否adhoc）</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">build_app(</span><br><span class="line">workspace: &quot;XXXX.xcworkspace&quot;,</span><br><span class="line">configuration: &quot;Debug&quot;, （scheme配置）</span><br><span class="line">scheme: &quot;XXXX&quot;,</span><br><span class="line">export_method: &quot;ad-hoc&quot;,</span><br><span class="line">output_directory:&quot;.ipa包输出路径&quot;,</span><br><span class="line">include_bitcode:true,</span><br><span class="line">)</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h3 id="5-钉钉通知"><a href="#5-钉钉通知" class="headerlink" title="5.钉钉通知"></a>5.钉钉通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#! bin/bash</span><br><span class="line">echo $2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">curl &apos; 放自己注册的钉钉机器人的token&apos; \</span><br><span class="line">-H &quot;Content-Type:application/json&quot;  \</span><br><span class="line">-d &quot;&#123; \</span><br><span class="line">markdown:&#123; \</span><br><span class="line">title:&apos;$1&apos;, \</span><br><span class="line">text:&apos;$2&apos; \</span><br><span class="line">&#125;,  \</span><br><span class="line">msgtype:&apos;markdown&apos; \</span><br><span class="line">&#125;&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="6-fastlane-构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）"><a href="#6-fastlane-构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）" class="headerlink" title="6 fastlane 构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）"></a>6 fastlane 构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）</h3><p>refer：<a href="https://blog.csdn.net/weixin_34293911/article/details/87011860" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34293911/article/details/87011860</a></p>
-<ul>
-<li>fastlane iOS 双重认证 更新配置文件<br>这个时候就用到这个，他可以自动管理配置开发者等信息<br><a href="https://github.com/fastlane/fastlane/tree/master/spaceship" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/spaceship</a></li>
-<li>访问 AppleId 管理站</li>
-<li>找到 安全 - App 专用密码，生成一个专用密码</li>
-<li>配置环境变量 vim ~/.bash_profile</li>
-<li>export</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=YOUR_PSD</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行 fastlane spaceauth -u <a href="mailto:abcd@qq.com" target="_blank" rel="noopener">abcd@qq.com</a> 按提示获取 session 信息。</li>
-<li>复制 session 信息（很长一大段） 配置环境变量 vim ~/.bash_profile</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export FASTLANE_SESSION=&apos;YOUR SESSION&apos;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1965,7 +1875,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
