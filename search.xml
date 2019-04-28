@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Xcode 10 打包导出时报错Failed to verify bitcode in]]></title>
+    <url>%2F2019%2F04%2F28%2FxcodeBug%2F</url>
+    <content type="text"><![CDATA[作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。当打包导出的时候，提示错误如下： Failed to verify bitcode in AipBase.framework/AipBase: error: Cannot extract bundle from /var/folders/n2/2hc63w0d555cdbpqxwmpy84w0000gn/T/XcodeDistPipeline.ujv/Root/Payload/DDGD.app/Frameworks/AipBase.framework/AipBase (i386) 方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：进入xcode -file-workSpace settings ： 选择 legacy build System 重新打包导出解决问题。 方法二：为了方便开发者调试，AipBase.framework合并了模拟器和真机架构，上线前，使用lipo工具移除相关架构即可，就可以解决这个问题，这个解决的比较彻底，建议用这个方法： cd lib 使用lipo -info 可以查看包含的架构lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: i386 x86_64 armv7 armv7s arm64 # 移除x86_64, i386 lipo -remove x86_64 AipBase.framework/AipBase -o AipBase.framework/AipBase lipo -remove i386 AipBase.framework/AipBase -o AipBase.framework/AipBase lipo -remove x86_64 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk lipo -remove i386 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk # 再次查看 lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: armv7 armv7s arm64]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash]]></title>
     <url>%2F2019%2F04%2F28%2Fxcode10%2F</url>
     <content type="text"><![CDATA[用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。]]></content>

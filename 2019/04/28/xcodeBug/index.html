@@ -96,17 +96,19 @@
 
 
 
-  <meta name="description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
+  <meta name="description" content="作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。当打包导出的时候，提示错误如下： Failed to verify bitcode in AipBase.framework/AipBase: error: Cannot extract bundle from /var/folders/n2/2hc63w0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="结合fastlane 组件进行自动化测试">
-<meta property="og:url" content="http://yoursite.com/2019/04/28/fastlane-test/index.html">
+<meta property="og:title" content="Xcode 10 打包导出时报错Failed to verify bitcode in">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/xcodeBug/index.html">
 <meta property="og:site_name" content="wangwei">
-<meta property="og:description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
+<meta property="og:description" content="作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。当打包导出的时候，提示错误如下： Failed to verify bitcode in AipBase.framework/AipBase: error: Cannot extract bundle from /var/folders/n2/2hc63w0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-28T07:31:49.393Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-28T07:38:43.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="结合fastlane 组件进行自动化测试">
-<meta name="twitter:description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
+<meta name="twitter:title" content="Xcode 10 打包导出时报错Failed to verify bitcode in">
+<meta name="twitter:description" content="作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。当打包导出的时候，提示错误如下： Failed to verify bitcode in AipBase.framework/AipBase: error: Cannot extract bundle from /var/folders/n2/2hc63w0">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -114,7 +116,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/28/fastlane-test/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/28/xcodeBug/">
 
 
 
@@ -124,7 +126,7 @@
   };
 </script>
 
-  <title>结合fastlane 组件进行自动化测试 | wangwei</title>
+  <title>Xcode 10 打包导出时报错Failed to verify bitcode in | wangwei</title>
   
 
 
@@ -312,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/fastlane-test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/xcodeBug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -329,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">结合fastlane 组件进行自动化测试
+          <h1 class="post-title" itemprop="name headline">Xcode 10 打包导出时报错Failed to verify bitcode in
 
               
             
@@ -355,7 +357,7 @@
                 
               
 
-              <time title="Created: 2019-04-28 15:31:11 / Modified: 15:31:49" itemprop="dateCreated datePublished" datetime="2019-04-28T15:31:11+08:00">2019-04-28</time>
+              <time title="Created: 2019-04-28 15:37:47 / Modified: 15:38:43" itemprop="dateCreated datePublished" datetime="2019-04-28T15:37:47+08:00">2019-04-28</time>
             
 
             
@@ -394,20 +396,22 @@
       
 
       
-        <blockquote>
-<p>1.Xcode创建一个含有Unit Tests的项目<br>1）单元测试target设置<br>info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的<br>2.安装fastlane<br>1）sudo gem install fastlane -NV或是brew cask install fastlane我这里使用gem安装的<br>2）安装完了执行fastlane –version，确认下是否安装完成和当前使用的版本号。、&gt;3.初始化Fastlane<br>1）cd到你的项目目录执行<br>2）fastlane init<br>初始化成功后会在当前工程目录生成一个fastlane文件夹<br>Appfile主要存放App的apple_id team_id app_identifier等信息<br>Deliverfile中为发布的配置信息，一般情况用不到。<br>Fastfile是我们最应该关注的文件，也是我们的工作文件。<br>4) 添加组件<br>fastlane add_plugin xcpretty_report 用于生成测试报告<br>5）配置Fastfile相关信息<br><code>`</code><br>default_platform(:ios)</p>
-</blockquote>
-<p>platform :ios do</p>
-<p>desc “自动化测试”</p>
-<p>lane :unittest do<br>UI.message(“start  xcodebuild”)<br>xcodebuild(<br>test: true,<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>destination: “platform=iOS Simulator,name=iPhone XR,OS=12.1”,<br>)<br>UI.message(“success  xcodebuild”)</p>
-<p>xcpretty_report(<br>buildlog_path: ‘fastlane’,<br>output_path: ‘fastlane/reports’,<br>use_json_formatter: true<br>)  </p>
-<h1 id="gym"><a href="#gym" class="headerlink" title="gym("></a>gym(</h1><h1 id="xcpretty-report-html-”tests-html”"><a href="#xcpretty-report-html-”tests-html”" class="headerlink" title="xcpretty_report_html:”tests.html”,"></a>xcpretty_report_html:”tests.html”,</h1><h1 id><a href="#" class="headerlink" title=")"></a>)</h1><p>UI.message(“start  xcov”)<br>xcov(<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>html_report: “true”,<br>json_report: “true”,<br>output_directory:”quickDemoesss”<br>)<br>UI.message(“success  xcov”)</p>
-<p>desc “读取覆盖率”<br>file = File.read(File.expand_path(“/Users/edz/Desktop/quickDemo/quickDemoesss/report.json”))<br>if file<br>data = JSON.parse(file)<br>UI.message(data)<br>UI.message(data[“coverage”])<br>else<br>UI.error(“Unable to open file!”)<br>return<br>end<br>end</p>
-<p>end<br><code>`</code>  </p>
-<blockquote>
-<p>6 执行 fastlane   unittest</p>
-</blockquote>
-
+        <p>作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。<br>当打包导出的时候，提示错误如下：</p>
+<pre><code>Failed to verify bitcode in AipBase.framework/AipBase:
+error: Cannot extract bundle from /var/folders/n2/2hc63w0d555cdbpqxwmpy84w0000gn/T/XcodeDistPipeline.ujv/Root/Payload/DDGD.app/Frameworks/AipBase.framework/AipBase (i386)
+</code></pre><h2 id="方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家："><a href="#方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家：" class="headerlink" title="方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家："></a>方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：</h2><h2 id="进入xcode-file-workSpace-settings-："><a href="#进入xcode-file-workSpace-settings-：" class="headerlink" title="进入xcode -file-workSpace settings ："></a>进入xcode -file-workSpace settings ：</h2><p><img src="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-09-19 下午5.00.23.png"></p>
+<p>选择 legacy build System 重新打包导出解决问题。</p>
+<p>方法二：<br>为了方便开发者调试，AipBase.framework合并了模拟器和真机架构，上线前，使用lipo工具移除相关架构即可，就可以解决这个问题，这个解决的比较彻底，建议用这个方法：</p>
+<p>cd lib</p>
+<h1 id="使用lipo-info-可以查看包含的架构"><a href="#使用lipo-info-可以查看包含的架构" class="headerlink" title="使用lipo -info 可以查看包含的架构"></a>使用lipo -info 可以查看包含的架构</h1><pre><code>lipo -info AipBase.framework/AipBase  # Architectures in the fat file: AipBase are: i386 x86_64 armv7 armv7s arm64
+# 移除x86_64, i386
+lipo -remove x86_64 AipBase.framework/AipBase -o AipBase.framework/AipBase
+lipo -remove i386 AipBase.framework/AipBase -o AipBase.framework/AipBase
+lipo -remove x86_64 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
+lipo -remove i386 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
+# 再次查看
+lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: armv7 armv7s arm64
+</code></pre>
       
     </div>
 
@@ -437,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/28/uitouch/" rel="next" title="UItouch事件被tableview拦截">
-                <i class="fa fa-chevron-left"></i> UItouch事件被tableview拦截
+              <a href="/2019/04/28/xcode10/" rel="next" title="xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash">
+                <i class="fa fa-chevron-left"></i> xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash
               </a>
             
           </div>
@@ -446,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/28/静态库/" rel="prev" title="创建静态私有库">
-                创建静态私有库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gym"><span class="nav-number">1.</span> <span class="nav-text">gym(</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xcpretty-report-html-”tests-html”"><span class="nav-number">2.</span> <span class="nav-text">xcpretty_report_html:”tests.html”,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家："><span class="nav-number">1.</span> <span class="nav-text">方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入xcode-file-workSpace-settings-："><span class="nav-number">2.</span> <span class="nav-text">进入xcode -file-workSpace settings ：</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#使用lipo-info-可以查看包含的架构"><span class="nav-number"></span> <span class="nav-text">使用lipo -info 可以查看包含的架构</span></a></li></div>
             
 
           </div>
