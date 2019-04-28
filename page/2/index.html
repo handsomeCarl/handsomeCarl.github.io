@@ -407,23 +407,21 @@
       
         
           
-            <p>作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。<br>当打包导出的时候，提示错误如下：</p>
-<pre><code>Failed to verify bitcode in AipBase.framework/AipBase:
-error: Cannot extract bundle from /var/folders/n2/2hc63w0d555cdbpqxwmpy84w0000gn/T/XcodeDistPipeline.ujv/Root/Payload/DDGD.app/Frameworks/AipBase.framework/AipBase (i386)
-</code></pre><h2 id="方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家："><a href="#方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家：" class="headerlink" title="方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家："></a>方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：</h2><h2 id="进入xcode-file-workSpace-settings-："><a href="#进入xcode-file-workSpace-settings-：" class="headerlink" title="进入xcode -file-workSpace settings ："></a>进入xcode -file-workSpace settings ：</h2><p><img src="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-09-19 下午5.00.23.png"></p>
-<p>选择 legacy build System 重新打包导出解决问题。</p>
-<p>方法二：<br>为了方便开发者调试，AipBase.framework合并了模拟器和真机架构，上线前，使用lipo工具移除相关架构即可，就可以解决这个问题，这个解决的比较彻底，建议用这个方法：</p>
-<p>cd lib</p>
-<h1 id="使用lipo-info-可以查看包含的架构"><a href="#使用lipo-info-可以查看包含的架构" class="headerlink" title="使用lipo -info 可以查看包含的架构"></a>使用lipo -info 可以查看包含的架构</h1><pre><code>lipo -info AipBase.framework/AipBase  # Architectures in the fat file: AipBase are: i386 x86_64 armv7 armv7s arm64
-# 移除x86_64, i386
-lipo -remove x86_64 AipBase.framework/AipBase -o AipBase.framework/AipBase
-lipo -remove i386 AipBase.framework/AipBase -o AipBase.framework/AipBase
-lipo -remove x86_64 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
-lipo -remove i386 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
-# 再次查看
-lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: armv7 armv7s arm64
-</code></pre>
+            <p>
+              作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。当打包导出的时候，提示错误如下：
+Failed to verify bitcode in AipBase.framework/AipBase:
+error: 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/28/xcodeBug/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -576,17 +574,19 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+            <p>
+              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/04/28/hello-world/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
