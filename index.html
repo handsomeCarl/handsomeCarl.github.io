@@ -309,175 +309,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/28/xcodeBug/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/28/xcodeBug/" class="post-title-link" itemprop="url">Xcode 10 打包导出时报错Failed to verify bitcode in</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-09-28 15:37:47" itemprop="dateCreated datePublished" datetime="2019-09-28T15:37:47+08:00">2019-09-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-28 19:59:53" itemprop="dateModified" datetime="2019-04-28T19:59:53+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。<br>当打包导出的时候，提示错误如下：</p>
-<pre><code>Failed to verify bitcode in AipBase.framework/AipBase:
-error: Cannot extract bundle from /var/folders/n2/2hc63w0d555cdbpqxwmpy84w0000gn/T/XcodeDistPipeline.ujv/Root/Payload/DDGD.app/Frameworks/AipBase.framework/AipBase (i386)
-</code></pre><h2 id="方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家："><a href="#方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家：" class="headerlink" title="方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家："></a>方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：</h2><h2 id="进入xcode-file-workSpace-settings-："><a href="#进入xcode-file-workSpace-settings-：" class="headerlink" title="进入xcode -file-workSpace settings ："></a>进入xcode -file-workSpace settings ：</h2><p><img src="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-09-19 下午5.00.23.png"></p>
-<p>选择 legacy build System 重新打包导出解决问题。</p>
-<p>方法二：<br>为了方便开发者调试，AipBase.framework合并了模拟器和真机架构，上线前，使用lipo工具移除相关架构即可，就可以解决这个问题，这个解决的比较彻底，建议用这个方法：</p>
-<p>cd lib</p>
-<h1 id="使用lipo-info-可以查看包含的架构"><a href="#使用lipo-info-可以查看包含的架构" class="headerlink" title="使用lipo -info 可以查看包含的架构"></a>使用lipo -info 可以查看包含的架构</h1><pre><code>lipo -info AipBase.framework/AipBase  # Architectures in the fat file: AipBase are: i386 x86_64 armv7 armv7s arm64
-# 移除x86_64, i386
-lipo -remove x86_64 AipBase.framework/AipBase -o AipBase.framework/AipBase
-lipo -remove i386 AipBase.framework/AipBase -o AipBase.framework/AipBase
-lipo -remove x86_64 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
-lipo -remove i386 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
-# 再次查看
-lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: armv7 armv7s arm64
-</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/m4a-wav/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -569,153 +400,6 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
 </blockquote>
 <h4 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">-(void)convetM4aToWav:(NSURL *)originalUrl</span><br><span class="line">destUrl:(NSString *)destUrlStr</span><br><span class="line">completed:(void (^)(NSError *error)) completed &#123;</span><br><span class="line">NSLog(@&quot;\n\n\nM4A-WAV\n\n\n&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:destUrlStr]) &#123;</span><br><span class="line">[[NSFileManager defaultManager] removeItemAtPath:destUrlStr error:nil];</span><br><span class="line">&#125;</span><br><span class="line">NSURL *destUrl     = [NSURL fileURLWithPath:destUrlStr];</span><br><span class="line">AVURLAsset *songAsset = [AVURLAsset URLAssetWithURL:originalUrl options:nil];</span><br><span class="line"></span><br><span class="line">//读取原始文件信息</span><br><span class="line">NSError *error = nil;</span><br><span class="line">AVAssetReader *assetReader = [AVAssetReader assetReaderWithAsset:songAsset error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog (@&quot;error: %@&quot;, error);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">AVAssetReaderOutput *assetReaderOutput = [AVAssetReaderAudioMixOutput</span><br><span class="line">assetReaderAudioMixOutputWithAudioTracks:songAsset.tracks</span><br><span class="line">audioSettings: nil];</span><br><span class="line">if (![assetReader canAddOutput:assetReaderOutput]) &#123;</span><br><span class="line">NSLog (@&quot;can&apos;t add reader output... die!&quot;);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">[assetReader addOutput:assetReaderOutput];</span><br><span class="line"></span><br><span class="line">AVAssetWriter *assetWriter = [AVAssetWriter assetWriterWithURL:destUrl</span><br><span class="line">fileType:AVFileTypeCoreAudioFormat</span><br><span class="line">error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog (@&quot;error: %@&quot;, error);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">AudioChannelLayout channelLayout;</span><br><span class="line">memset(&amp;channelLayout, 0, sizeof(AudioChannelLayout));</span><br><span class="line">channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo;</span><br><span class="line">NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:</span><br><span class="line">[NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,</span><br><span class="line">[NSNumber numberWithFloat:8000], AVSampleRateKey,</span><br><span class="line">[NSNumber numberWithInt:2], AVNumberOfChannelsKey,</span><br><span class="line">[NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,</span><br><span class="line">[NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,</span><br><span class="line">[NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,</span><br><span class="line">[NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,</span><br><span class="line">nil];</span><br><span class="line">AVAssetWriterInput *assetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio</span><br><span class="line">outputSettings:outputSettings];</span><br><span class="line">if ([assetWriter canAddInput:assetWriterInput]) &#123;</span><br><span class="line">[assetWriter addInput:assetWriterInput];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSLog (@&quot;can&apos;t add asset writer input... die!&quot;);</span><br><span class="line">completed(error);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">assetWriterInput.expectsMediaDataInRealTime = NO;</span><br><span class="line"></span><br><span class="line">[assetWriter startWriting];</span><br><span class="line">[assetReader startReading];</span><br><span class="line"></span><br><span class="line">AVAssetTrack *soundTrack = [songAsset.tracks objectAtIndex:0];</span><br><span class="line">CMTime startTime = CMTimeMake (0, soundTrack.naturalTimeScale);</span><br><span class="line">[assetWriter startSessionAtSourceTime:startTime];</span><br><span class="line"></span><br><span class="line">__block UInt64 convertedByteCount = 0;</span><br><span class="line"></span><br><span class="line">dispatch_queue_t mediaInputQueue = dispatch_queue_create(&quot;mediaInputQueue&quot;, NULL);</span><br><span class="line">[assetWriterInput requestMediaDataWhenReadyOnQueue:mediaInputQueue</span><br><span class="line">usingBlock: ^</span><br><span class="line">&#123;</span><br><span class="line">while (assetWriterInput.readyForMoreMediaData) &#123;</span><br><span class="line">CMSampleBufferRef nextBuffer = [assetReaderOutput copyNextSampleBuffer];</span><br><span class="line">if (nextBuffer) &#123;</span><br><span class="line">// append buffer</span><br><span class="line">[assetWriterInput appendSampleBuffer: nextBuffer];</span><br><span class="line">//                 NSLog (@&quot;appended a buffer (%zu bytes)&quot;,</span><br><span class="line">//                        CMSampleBufferGetTotalSampleSize (nextBuffer));</span><br><span class="line">convertedByteCount += CMSampleBufferGetTotalSampleSize (nextBuffer);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line">[assetWriterInput markAsFinished];</span><br><span class="line">[assetWriter finishWritingWithCompletionHandler:^&#123;</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line">[assetReader cancelReading];</span><br><span class="line">NSDictionary *outputFileAttributes = [[NSFileManager defaultManager]</span><br><span class="line">attributesOfItemAtPath:[destUrl path]</span><br><span class="line">error:nil];</span><br><span class="line">NSLog (@&quot;FlyElephant %lld&quot;,[outputFileAttributes fileSize]);</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">NSLog(@&quot;转换结束&quot;);</span><br><span class="line">// 删除临时temprecordAudio.m4a文件</span><br><span class="line">NSError *removeError = nil;</span><br><span class="line"></span><br><span class="line">if ([[NSFileManager defaultManager] fileExistsAtPath:[originalUrl path]]) &#123;</span><br><span class="line">BOOL success = [[NSFileManager defaultManager] removeItemAtPath:[originalUrl path] error:&amp;removeError];</span><br><span class="line">if (!success) &#123;</span><br><span class="line">NSLog(@&quot;删除临时temprecordAudio.m4a文件失败:%@&quot;,removeError);</span><br><span class="line">completed(removeError);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">NSLog(@&quot;删除临时temprecordAudio.m4a文件:%@成功&quot;,originalUrl);</span><br><span class="line">completed(removeError);</span><br><span class="line">&#125;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">NSLog(@&quot;文件不存在&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>文档目录相关代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)documentPath</span><br><span class="line">&#123;</span><br><span class="line">NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;</span><br><span class="line">return documentPath;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)audioCacheFolder</span><br><span class="line">&#123;</span><br><span class="line">NSString *audioFolder = [[self documentPath] stringByAppendingPathComponent:AUDIOCACHE];</span><br><span class="line">if (![FILEMANAGER fileExistsAtPath:audioFolder]) &#123;</span><br><span class="line">NSError *error = nil;</span><br><span class="line">[FILEMANAGER createDirectoryAtPath:audioFolder withIntermediateDirectories:YES attributes:nil error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog(@&quot;音频文件夹创建失败----%@&quot;, error);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return audioFolder;</span><br><span class="line">&#125;</span><br><span class="line">//用url作为文件名</span><br><span class="line">- (NSString *)audioFilePath:(NSString *)audioURL</span><br><span class="line">&#123;</span><br><span class="line">NSString *fileName = [audioURL stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;-&quot;];</span><br><span class="line">return [[self audioCacheFolder] stringByAppendingPathComponent:fileName];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/28/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-28 11:43:52" itemprop="dateCreated datePublished" datetime="2019-04-28T11:43:52+08:00">2019-04-28</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -1978,6 +1662,318 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
 <blockquote>
 <p>6 执行 fastlane   unittest</p>
 </blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/xcode10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/28/xcode10/" class="post-title-link" itemprop="url">xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-28 15:33:17" itemprop="dateCreated datePublished" datetime="2018-11-28T15:33:17+08:00">2018-11-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:59:41" itemprop="dateModified" datetime="2019-04-28T19:59:41+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6691cab26282532e.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IMG_0643.JPG"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/28/muitiple-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/28/muitiple-error/" class="post-title-link" itemprop="url">multiple commands produce ''    日常error记载</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-28 15:27:22" itemprop="dateCreated datePublished" datetime="2018-10-28T15:27:22+08:00">2018-10-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:58:56" itemprop="dateModified" datetime="2019-04-28T19:58:56+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>下载别人demo 或者日常写项目中会遇到类似如下的bug：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-d0ff1f851fed80d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.36.png"><br>这个时候可以通过如下方式，删除info.plist 然后command+R 允许即可 完美：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-e1661de22ec2bf8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.53.png"></p>
 
           
         
