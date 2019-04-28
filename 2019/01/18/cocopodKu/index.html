@@ -96,13 +96,22 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wangwei">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。一 首先要明白两个概念:1.code repository是代码库。2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。二 创建cocopods仓库相关步骤：1.在本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建cocopods私有库">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/cocopodKu/index.html">
 <meta property="og:site_name" content="wangwei">
+<meta property="og:description" content="通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。一 首先要明白两个概念:1.code repository是代码库。2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。二 创建cocopods仓库相关步骤：1.在本">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-5d088d4376e0da76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-195852b6c15ae626.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-a8d942bc6771a1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-28T11:57:59.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangwei">
+<meta name="twitter:title" content="创建cocopods私有库">
+<meta name="twitter:description" content="通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。一 首先要明白两个概念:1.code repository是代码库。2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。二 创建cocopods仓库相关步骤：1.在本">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -110,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/18/cocopodKu/">
 
 
 
@@ -120,7 +129,7 @@
   };
 </script>
 
-  <title>wangwei</title>
+  <title>创建cocopods私有库 | wangwei</title>
   
 
 
@@ -168,8 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,9 +300,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -309,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/xcode10/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/cocopodKu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -326,10 +334,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/28/xcode10/" class="post-title-link" itemprop="url">xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash</a>
+          <h1 class="post-title" itemprop="name headline">创建cocopods私有库
+
               
             
           </h1>
@@ -354,7 +360,7 @@
                 
               
 
-              <time title="Created: 2018-11-28 15:33:17" itemprop="dateCreated datePublished" datetime="2018-11-28T15:33:17+08:00">2018-11-28</time>
+              <time title="Created: 2019-01-18 15:32:40" itemprop="dateCreated datePublished" datetime="2019-01-18T15:32:40+08:00">2019-01-18</time>
             
 
             
@@ -371,7 +377,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-28 19:59:41" itemprop="dateModified" datetime="2019-04-28T19:59:41+08:00">2019-04-28</time>
+                <time title="Modified: 2019-04-28 19:57:59" itemprop="dateModified" datetime="2019-04-28T19:57:59+08:00">2019-04-28</time>
               
             
           </span>
@@ -405,12 +411,23 @@
       
 
       
-        
-          
-            <p>用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6691cab26282532e.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IMG_0643.JPG"></p>
+        <p>通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。<br>一 首先要明白两个概念:<br>1.code repository是代码库。<br>2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。<br>二 创建cocopods仓库相关步骤：<br>1.在本地创建lib仓库<br>pod  lib create    podsDemoSdk<br>1）相关目录结构如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.22.png"><br>2）创建时候相关信息如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-5d088d4376e0da76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.35.39.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-195852b6c15ae626.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.00.png"></p>
+<ol start="2">
+<li>将本地仓库关联到远端git仓库 我们用的是gitlab 创建的git仓库<br>1）git add .  #不但可以[跟单]文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了，注意空格<br>2）git commit -m “注释” #把文件提交到仓库<br>3）git remote add origin  远程仓库地址              #本地关联远程仓库<br>4）git push -u origin master #把本地库的所有内容推送到远程库上（第一次需要加-u，后面就不用加了）</li>
+<li>将相关sdk 代码放在 podsDemoSdk/Classes 目录下<br>4.配置相关spec 文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-a8d942bc6771a1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>配置相关远程仓库地址和相关内容，按着图中格式配就行了。</li>
+<li><p>验证podspec的有效性，打开终端 cd 到podsDemoSdk的目录中<br>接着运行pod lib lint<br>如果有警告，会导致无法通过，需要添加–allow-warnings<br>如果使用了c函数相关的，需要添加–use-libraries<br>显示pass 字眼 验证通过后，把代码提交到仓库即可<br>5.把代码提交到仓库即可<br>git add -A<br>git commit -m “add pod files”<br>git remote add origin 远程仓库     //连接远程github项目<br>git tag ‘0.1.0’  //这里的版本号注意要和podspec文件中的版本号统一<br>git push –tags        //将本地tag更新到github项目上去<br>git push origin master    //将本地项目更新到github项目上去</p>
+</li>
+<li><p>创建一个spec私有仓库<br>现在GitLab上面创建一个私有仓库，用来存放私有依赖代码库的配置<br>在终端执行命令：<br>pod repo add  podsDemoSpecs spec仓库地址</p>
+</li>
+</ol>
+<p>也就是在~/.cocoapods/repo目录下添加了一个以你的私有repo为名的文件夹</p>
+<p>现在为止，我们已经在本地得到我们自己的私有仓库 podsDemoSpecs ，这是一个空的仓库</p>
+<p>7.关联代码库和配置仓库<br>pod repo push podsDemoSpecs podsDemoSdk.podspec –use-libraries –allow-warnings</p>
+<p>至此仓库已经创建完成</p>
+<p>三，下面是在项目中的应用，直接在podfile文件中配置相关信息就好，pod install即可 </p>
+<p>谢谢，如果不足，请指正谢谢!</p>
 
-          
-        
       
     </div>
 
@@ -433,169 +450,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/28/muitiple-error/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/28/muitiple-error/" class="post-title-link" itemprop="url">multiple commands produce ''    日常error记载</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2018/12/28/fastlane-test/" rel="next" title="结合fastlane 组件进行自动化测试">
+                <i class="fa fa-chevron-left"></i> 结合fastlane 组件进行自动化测试
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/28/静态库/" rel="prev" title="创建静态私有库">
+                创建静态私有库 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-28 15:27:22" itemprop="dateCreated datePublished" datetime="2018-10-28T15:27:22+08:00">2018-10-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-28 19:58:56" itemprop="dateModified" datetime="2019-04-28T19:58:56+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>下载别人demo 或者日常写项目中会遇到类似如下的bug：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-d0ff1f851fed80d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.36.png"><br>这个时候可以通过如下方式，删除info.plist 然后command+R 允许即可 完美：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-e1661de22ec2bf8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.53.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -605,18 +485,15 @@
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -816,6 +693,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -831,6 +712,8 @@
 
   
 
+
+  
 
 
   

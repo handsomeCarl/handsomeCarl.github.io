@@ -96,13 +96,17 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wangwei">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="最近做项目用到了手写签名的功能，手写签名的view是通过UItouch相关方法画线实现的，因为页面UI是列表形式，手写签名view 需要添加到tableview的footview上，这个时候就出现了问题，手写签名view的touch被tableview拦截了，这个时候再去操作view 签名的时候 是不能成功呢，而且页面会滚动。 下面我记录一下我的处理方式1.一开始我以为像网上的方式，给table">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UItouch事件被tableview拦截">
+<meta property="og:url" content="http://yoursite.com/2019/02/20/uitouch/index.html">
 <meta property="og:site_name" content="wangwei">
+<meta property="og:description" content="最近做项目用到了手写签名的功能，手写签名的view是通过UItouch相关方法画线实现的，因为页面UI是列表形式，手写签名view 需要添加到tableview的footview上，这个时候就出现了问题，手写签名view的touch被tableview拦截了，这个时候再去操作view 签名的时候 是不能成功呢，而且页面会滚动。 下面我记录一下我的处理方式1.一开始我以为像网上的方式，给table">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-28T11:59:29.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangwei">
+<meta name="twitter:title" content="UItouch事件被tableview拦截">
+<meta name="twitter:description" content="最近做项目用到了手写签名的功能，手写签名的view是通过UItouch相关方法画线实现的，因为页面UI是列表形式，手写签名view 需要添加到tableview的footview上，这个时候就出现了问题，手写签名view的touch被tableview拦截了，这个时候再去操作view 签名的时候 是不能成功呢，而且页面会滚动。 下面我记录一下我的处理方式1.一开始我以为像网上的方式，给table">
 
 
 
@@ -110,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/20/uitouch/">
 
 
 
@@ -120,7 +124,7 @@
   };
 </script>
 
-  <title>wangwei</title>
+  <title>UItouch事件被tableview拦截 | wangwei</title>
   
 
 
@@ -168,8 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,9 +295,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -309,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/xcode10/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/uitouch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -326,10 +329,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/28/xcode10/" class="post-title-link" itemprop="url">xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash</a>
+          <h1 class="post-title" itemprop="name headline">UItouch事件被tableview拦截
+
               
             
           </h1>
@@ -354,7 +355,7 @@
                 
               
 
-              <time title="Created: 2018-11-28 15:33:17" itemprop="dateCreated datePublished" datetime="2018-11-28T15:33:17+08:00">2018-11-28</time>
+              <time title="Created: 2019-02-20 15:27:46" itemprop="dateCreated datePublished" datetime="2019-02-20T15:27:46+08:00">2019-02-20</time>
             
 
             
@@ -371,7 +372,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-28 19:59:41" itemprop="dateModified" datetime="2019-04-28T19:59:41+08:00">2019-04-28</time>
+                <time title="Modified: 2019-04-28 19:59:29" itemprop="dateModified" datetime="2019-04-28T19:59:29+08:00">2019-04-28</time>
               
             
           </span>
@@ -405,12 +406,10 @@
       
 
       
-        
-          
-            <p>用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6691cab26282532e.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IMG_0643.JPG"></p>
+        <blockquote>
+<p>最近做项目用到了手写签名的功能，手写签名的view是通过UItouch相关方法画线实现的，因为页面UI是列表形式，手写签名view 需要添加到tableview的footview上，这个时候就出现了问题，手写签名view的touch被tableview拦截了，这个时候再去操作view 签名的时候 是不能成功呢，而且页面会滚动。 下面我记录一下我的处理方式<br>1.一开始我以为像网上的方式，给tableview创建一个子类然后引入touch 方法：<br>refer <a href="https://blog.csdn.net/qq_42839789/article/details/81501832" target="_blank" rel="noopener">https://blog.csdn.net/qq_42839789/article/details/81501832</a><br>但是view的touch 会覆盖tableviewtouch 并不能解决问题。<br>2.这个时候我想到hittest 方法通过事件响应机制，判断触摸的view是不是签名view 如果是让tableview暂时停止滚动，如果不是正常滚动。<br>具体实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface WYTouchTableView : UITableView</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">#import &quot;WYTouchTableView.h&quot;</span><br><span class="line">#import &quot;HJSignatureView.h&quot;</span><br><span class="line">@implementation WYTouchTableView</span><br><span class="line"></span><br><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">UIView *viewReturn =[super hitTest:point withEvent:event];</span><br><span class="line">//在touchView区域</span><br><span class="line">if ([viewReturn isKindOfClass:[HJSignatureView class]]) &#123;</span><br><span class="line">self.scrollEnabled = NO;</span><br><span class="line">return viewReturn;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">self.scrollEnabled = YES;</span><br><span class="line">&#125;</span><br><span class="line">//不在touchView区域，正常操作</span><br><span class="line">return viewReturn;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 
-          
-        
       
     </div>
 
@@ -433,169 +432,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/28/muitiple-error/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/28/muitiple-error/" class="post-title-link" itemprop="url">multiple commands produce ''    日常error记载</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/01/28/静态库/" rel="next" title="创建静态私有库">
+                <i class="fa fa-chevron-left"></i> 创建静态私有库
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/28/aduiomix/" rel="prev" title="iOS音频合并的多种方式">
+                iOS音频合并的多种方式 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-28 15:27:22" itemprop="dateCreated datePublished" datetime="2018-10-28T15:27:22+08:00">2018-10-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-28 19:58:56" itemprop="dateModified" datetime="2019-04-28T19:58:56+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>下载别人demo 或者日常写项目中会遇到类似如下的bug：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-d0ff1f851fed80d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.36.png"><br>这个时候可以通过如下方式，删除info.plist 然后command+R 允许即可 完美：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-e1661de22ec2bf8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.53.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -605,18 +467,15 @@
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -816,6 +675,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -831,6 +694,8 @@
 
   
 
+
+  
 
 
   

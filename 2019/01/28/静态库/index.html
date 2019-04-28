@@ -96,13 +96,22 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wangwei">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="在上篇文章中介绍了Cocoapods私有库的创建有些时候我们并不希望别人引用咱们的库的时候看见我们的相关实现代码，这个时候就需要将相关代码，打成静态库。第一 .a和.framwork的区别：iOS静态库形式和动态库形式：静态库：.a和.framework动态库：.dylib和.framework.a是一个纯二进制文件，.framework中除了有二进制文件外还有资源文件。.a文件不能直接使用，至">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建静态私有库">
+<meta property="og:url" content="http://yoursite.com/2019/01/28/静态库/index.html">
 <meta property="og:site_name" content="wangwei">
+<meta property="og:description" content="在上篇文章中介绍了Cocoapods私有库的创建有些时候我们并不希望别人引用咱们的库的时候看见我们的相关实现代码，这个时候就需要将相关代码，打成静态库。第一 .a和.framwork的区别：iOS静态库形式和动态库形式：静态库：.a和.framework动态库：.dylib和.framework.a是一个纯二进制文件，.framework中除了有二进制文件外还有资源文件。.a文件不能直接使用，至">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-580fef30275241cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-6bdc533000be861b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-392c5880c7d35c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2078724-3b60db622439bce6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-28T11:57:35.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangwei">
+<meta name="twitter:title" content="创建静态私有库">
+<meta name="twitter:description" content="在上篇文章中介绍了Cocoapods私有库的创建有些时候我们并不希望别人引用咱们的库的时候看见我们的相关实现代码，这个时候就需要将相关代码，打成静态库。第一 .a和.framwork的区别：iOS静态库形式和动态库形式：静态库：.a和.framework动态库：.dylib和.framework.a是一个纯二进制文件，.framework中除了有二进制文件外还有资源文件。.a文件不能直接使用，至">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2078724-580fef30275241cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -110,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/28/静态库/">
 
 
 
@@ -120,7 +129,7 @@
   };
 </script>
 
-  <title>wangwei</title>
+  <title>创建静态私有库 | wangwei</title>
   
 
 
@@ -168,8 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,9 +300,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -309,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/xcode10/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/静态库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -326,10 +334,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/28/xcode10/" class="post-title-link" itemprop="url">xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash</a>
+          <h1 class="post-title" itemprop="name headline">创建静态私有库
+
               
             
           </h1>
@@ -354,7 +360,7 @@
                 
               
 
-              <time title="Created: 2018-11-28 15:33:17" itemprop="dateCreated datePublished" datetime="2018-11-28T15:33:17+08:00">2018-11-28</time>
+              <time title="Created: 2019-01-28 12:31:25" itemprop="dateCreated datePublished" datetime="2019-01-28T12:31:25+08:00">2019-01-28</time>
             
 
             
@@ -371,7 +377,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-28 19:59:41" itemprop="dateModified" datetime="2019-04-28T19:59:41+08:00">2019-04-28</time>
+                <time title="Modified: 2019-04-28 19:57:35" itemprop="dateModified" datetime="2019-04-28T19:57:35+08:00">2019-04-28</time>
               
             
           </span>
@@ -405,12 +411,18 @@
       
 
       
-        
-          
-            <p>用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6691cab26282532e.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IMG_0643.JPG"></p>
+        <blockquote>
+<p>在上篇文章中介绍了Cocoapods私有库的创建<br>有些时候我们并不希望别人引用咱们的库的时候看见我们的相关实现代码，这个时候就需要将相关代码，打成静态库。<br>第一 .a和.framwork的区别：<br>iOS静态库形式和动态库形式：<br>静态库：.a和.framework<br>动态库：.dylib和.framework<br>.a是一个纯二进制文件，.framework中除了有二进制文件外还有资源文件。<br>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。<br>.a + .h + sourceFile = .framework<br>第二 我们可以通过两种方式进行静态库的打包，<br>1是手动打包比较麻烦，网上有好多相关教程，这里就不一一介绍了<br>2命令行打包，这个比较简单，一条命令即可<br>1）安装打包插件<br>终端执行以下命令<br>sudo gem install cocoapods-packager<br>2）进入私有库目录 然后将源码导入classes 目录下  然后执行下面的命令<br>pod package demo.podspec –library –force<br>其中–library指定打包成.a文件，如果不带上将会打包成.framework文件。–force是指强制覆盖。<br>这个时候目录下会多出一个文件夹<br><img src="https://upload-images.jianshu.io/upload_images/2078724-580fef30275241cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午2.10.29.png"><br>然后将framework文件复制到aesEncrypts/Framework/下面<br>第三 配置相关私有库信息<br>1）将相关framework导入私有库目录下<br>2）配置spec文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6bdc533000be861b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午2.13.58.png"></p>
+</blockquote>
+<p>管理.framework<br>跟管理.a类似，同样是生成通用framework。只不过podspec有点不同。.a是s.vendored_libraries，.framework是s.vendored_frameworks。<br>3）.tag标记,并且上传<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/// 第一次需要在前面加一个v</span><br><span class="line">git tag &quot;v1.0.0&quot;</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure></p>
+<p>6.验证.podspec</p>
+<p>方式一<br>// 加上–verbose验证失败会显示详细的报错信息<br>pod spec lint aesEncrypts.podspec –verbose<br>方式二<br>pod spec lint<br>7.发布自己的.podspec到cocoapods<br>pod trunk push aesEncrypts.podspec<br>如果有警告用:pod trunk push aesEncrypts.podspec –allow-warnings</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-392c5880c7d35c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-20 上午10.17.05.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-3b60db622439bce6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-20 上午10.17.28.png"></p>
+<blockquote>
+<p>注意：注意cocopods 版本 不要用beta 版本进行创建，要不lib 验证可以通过，但是spec 方式验证会出错。<br>pod spec相对于pod lib 会更为精确，pod lib相当于只验证一个本地仓库，pod spec会同时验证本地仓库和远程仓库。 如果spec文件不通过，spec 文件是不能上传到远程仓库</p>
+</blockquote>
 
-          
-        
       
     </div>
 
@@ -433,169 +445,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/28/muitiple-error/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/28/muitiple-error/" class="post-title-link" itemprop="url">multiple commands produce ''    日常error记载</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/01/18/cocopodKu/" rel="next" title="创建cocopods私有库">
+                <i class="fa fa-chevron-left"></i> 创建cocopods私有库
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/02/20/uitouch/" rel="prev" title="UItouch事件被tableview拦截">
+                UItouch事件被tableview拦截 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-28 15:27:22" itemprop="dateCreated datePublished" datetime="2018-10-28T15:27:22+08:00">2018-10-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-28 19:58:56" itemprop="dateModified" datetime="2019-04-28T19:58:56+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>下载别人demo 或者日常写项目中会遇到类似如下的bug：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-d0ff1f851fed80d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.36.png"><br>这个时候可以通过如下方式，删除info.plist 然后command+R 允许即可 完美：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-e1661de22ec2bf8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.53.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -605,18 +480,15 @@
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -816,6 +688,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -831,6 +707,8 @@
 
   
 
+
+  
 
 
   

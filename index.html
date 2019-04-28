@@ -309,6 +309,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/28/xcodeBug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/28/xcodeBug/" class="post-title-link" itemprop="url">Xcode 10 打包导出时报错Failed to verify bitcode in</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-28 15:37:47" itemprop="dateCreated datePublished" datetime="2019-09-28T15:37:47+08:00">2019-09-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:59:53" itemprop="dateModified" datetime="2019-04-28T19:59:53+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。<br>当打包导出的时候，提示错误如下：</p>
+<pre><code>Failed to verify bitcode in AipBase.framework/AipBase:
+error: Cannot extract bundle from /var/folders/n2/2hc63w0d555cdbpqxwmpy84w0000gn/T/XcodeDistPipeline.ujv/Root/Payload/DDGD.app/Frameworks/AipBase.framework/AipBase (i386)
+</code></pre><h2 id="方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家："><a href="#方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家：" class="headerlink" title="方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家："></a>方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：</h2><h2 id="进入xcode-file-workSpace-settings-："><a href="#进入xcode-file-workSpace-settings-：" class="headerlink" title="进入xcode -file-workSpace settings ："></a>进入xcode -file-workSpace settings ：</h2><p><img src="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-09-19 下午5.00.23.png"></p>
+<p>选择 legacy build System 重新打包导出解决问题。</p>
+<p>方法二：<br>为了方便开发者调试，AipBase.framework合并了模拟器和真机架构，上线前，使用lipo工具移除相关架构即可，就可以解决这个问题，这个解决的比较彻底，建议用这个方法：</p>
+<p>cd lib</p>
+<h1 id="使用lipo-info-可以查看包含的架构"><a href="#使用lipo-info-可以查看包含的架构" class="headerlink" title="使用lipo -info 可以查看包含的架构"></a>使用lipo -info 可以查看包含的架构</h1><pre><code>lipo -info AipBase.framework/AipBase  # Architectures in the fat file: AipBase are: i386 x86_64 armv7 armv7s arm64
+# 移除x86_64, i386
+lipo -remove x86_64 AipBase.framework/AipBase -o AipBase.framework/AipBase
+lipo -remove i386 AipBase.framework/AipBase -o AipBase.framework/AipBase
+lipo -remove x86_64 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
+lipo -remove i386 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
+# 再次查看
+lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: armv7 armv7s arm64
+</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/m4a-wav/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -456,7 +625,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/xcodeBug/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -476,7 +645,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/28/xcodeBug/" class="post-title-link" itemprop="url">Xcode 10 打包导出时报错Failed to verify bitcode in</a>
+                <a href="/2019/04/28/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
               
             
           </h1>
@@ -501,13 +670,9 @@
                 
               
 
-              <time title="Created: 2019-04-28 15:37:47 / Modified: 15:38:43" itemprop="dateCreated datePublished" datetime="2019-04-28T15:37:47+08:00">2019-04-28</time>
+              <time title="Created: 2019-04-28 11:43:52" itemprop="dateCreated datePublished" datetime="2019-04-28T11:43:52+08:00">2019-04-28</time>
             
 
-            
-              
-
-              
             
           </span>
 
@@ -542,164 +707,15 @@
       
         
           
-            <p>作为iOS开发者,新的开发工具正式发布时定然要及时更新，但不幸的是有好多坑。这是其中一个比较难遇见的坑，其他的在网上比较好找，就不一一列出了。<br>当打包导出的时候，提示错误如下：</p>
-<pre><code>Failed to verify bitcode in AipBase.framework/AipBase:
-error: Cannot extract bundle from /var/folders/n2/2hc63w0d555cdbpqxwmpy84w0000gn/T/XcodeDistPipeline.ujv/Root/Payload/DDGD.app/Frameworks/AipBase.framework/AipBase (i386)
-</code></pre><h2 id="方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家："><a href="#方法一：-这是因为code-新的build-System造成的，一个避免延误开发打包的方法展示给大家：" class="headerlink" title="方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家："></a>方法一： 这是因为code 新的build System造成的，一个避免延误开发打包的方法展示给大家：</h2><h2 id="进入xcode-file-workSpace-settings-："><a href="#进入xcode-file-workSpace-settings-：" class="headerlink" title="进入xcode -file-workSpace settings ："></a>进入xcode -file-workSpace settings ：</h2><p><img src="https://upload-images.jianshu.io/upload_images/2078724-a355048517f2ecef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2018-09-19 下午5.00.23.png"></p>
-<p>选择 legacy build System 重新打包导出解决问题。</p>
-<p>方法二：<br>为了方便开发者调试，AipBase.framework合并了模拟器和真机架构，上线前，使用lipo工具移除相关架构即可，就可以解决这个问题，这个解决的比较彻底，建议用这个方法：</p>
-<p>cd lib</p>
-<h1 id="使用lipo-info-可以查看包含的架构"><a href="#使用lipo-info-可以查看包含的架构" class="headerlink" title="使用lipo -info 可以查看包含的架构"></a>使用lipo -info 可以查看包含的架构</h1><pre><code>lipo -info AipBase.framework/AipBase  # Architectures in the fat file: AipBase are: i386 x86_64 armv7 armv7s arm64
-# 移除x86_64, i386
-lipo -remove x86_64 AipBase.framework/AipBase -o AipBase.framework/AipBase
-lipo -remove i386 AipBase.framework/AipBase -o AipBase.framework/AipBase
-lipo -remove x86_64 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
-lipo -remove i386 AipOcrSdk.framework/AipOcrSdk -o AipOcrSdk.framework/AipOcrSdk
-# 再次查看
-lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase are: armv7 armv7s arm64
-</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/xcode10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/28/xcode10/" class="post-title-link" itemprop="url">xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-28 15:33:17 / Modified: 15:33:50" itemprop="dateCreated datePublished" datetime="2019-04-28T15:33:17+08:00">2019-04-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6691cab26282532e.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IMG_0643.JPG"></p>
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -756,7 +772,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/cocopodKu/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/lame转化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -776,7 +792,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/28/cocopodKu/" class="post-title-link" itemprop="url">创建cocopods私有库</a>
+                <a href="/2019/04/08/lame转化/" class="post-title-link" itemprop="url">通过lame 进行音频格式转化</a>
               
             
           </h1>
@@ -801,12 +817,24 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
                 
               
 
-              <time title="Created: 2019-04-28 15:32:40 / Modified: 15:33:00" itemprop="dateCreated datePublished" datetime="2019-04-28T15:32:40+08:00">2019-04-28</time>
+              <time title="Created: 2019-04-08 15:26:39" itemprop="dateCreated datePublished" datetime="2019-04-08T15:26:39+08:00">2019-04-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:58:33" itemprop="dateModified" datetime="2019-04-28T19:58:33+08:00">2019-04-28</time>
               
             
           </span>
@@ -842,22 +870,277 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
       
         
           
-            <p>通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。<br>一 首先要明白两个概念:<br>1.code repository是代码库。<br>2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。<br>二 创建cocopods仓库相关步骤：<br>1.在本地创建lib仓库<br>pod  lib create    podsDemoSdk<br>1）相关目录结构如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.22.png"><br>2）创建时候相关信息如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-5d088d4376e0da76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.35.39.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-195852b6c15ae626.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.00.png"></p>
-<ol start="2">
-<li>将本地仓库关联到远端git仓库 我们用的是gitlab 创建的git仓库<br>1）git add .  #不但可以[跟单]文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了，注意空格<br>2）git commit -m “注释” #把文件提交到仓库<br>3）git remote add origin  远程仓库地址              #本地关联远程仓库<br>4）git push -u origin master #把本地库的所有内容推送到远程库上（第一次需要加-u，后面就不用加了）</li>
-<li>将相关sdk 代码放在 podsDemoSdk/Classes 目录下<br>4.配置相关spec 文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-a8d942bc6771a1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>配置相关远程仓库地址和相关内容，按着图中格式配就行了。</li>
-<li><p>验证podspec的有效性，打开终端 cd 到podsDemoSdk的目录中<br>接着运行pod lib lint<br>如果有警告，会导致无法通过，需要添加–allow-warnings<br>如果使用了c函数相关的，需要添加–use-libraries<br>显示pass 字眼 验证通过后，把代码提交到仓库即可<br>5.把代码提交到仓库即可<br>git add -A<br>git commit -m “add pod files”<br>git remote add origin 远程仓库     //连接远程github项目<br>git tag ‘0.1.0’  //这里的版本号注意要和podspec文件中的版本号统一<br>git push –tags        //将本地tag更新到github项目上去<br>git push origin master    //将本地项目更新到github项目上去</p>
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
+<p> 因为上一篇音频合成中遇到了一个问题，合成工具不支持wav音频格式转化，而且录音所得的wav格式  是无损的格式，标准的wav采样率为44100Hz，也是CD标准格式；mp3属于有损压缩文件，不过体积小，便于保存。<br>lame  下载下来不能直接用</p>
+</blockquote>
+<h3 id="依赖的东西-："><a href="#依赖的东西-：" class="headerlink" title="依赖的东西 ："></a>依赖的东西 ：</h3><p><a href="https://sourceforge.net/projects/lame/files/lame/" target="_blank" rel="noopener">lame库下载地址</a><br><a href="https://github.com/kewlbear/lame-ios-build" target="_blank" rel="noopener">lame 静态库打包工具地址</a></p>
+<h3 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h3><ul>
+<li>把下载的lame和build-lame.sh放在一个文件夹下</li>
+</ul>
+<blockquote>
+<p>注意 # build-lame.sh 中 #directories SOURCE=”lame”<br>这里lame是来源文件名</p>
+<ul>
+<li>在创建的目录下执行 bulid 脚本 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./build-lame.sh</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>创建一个spec私有仓库<br>现在GitLab上面创建一个私有仓库，用来存放私有依赖代码库的配置<br>在终端执行命令：<br>pod repo add  podsDemoSpecs spec仓库地址</p>
+</ul>
+</blockquote>
+<ul>
+<li><p>下面 fat-lame 中就是我们想要的东西，将.a 文件和.h文件放入项目即可<br><img src="https://upload-images.jianshu.io/upload_images/2078724-5a3159d4188cdaea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-28 上午11.02.30.png"></p>
 </li>
+<li><p>wav 转map3 相关代码</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">#define AUDIOCACHE @&quot;音频存放目录&quot;</span><br><span class="line">文件管理</span><br><span class="line">#define FILEMANAGER [NSFileManager defaultManager]</span><br><span class="line"></span><br><span class="line">- (NSString *)documentPath</span><br><span class="line">&#123;</span><br><span class="line">NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;</span><br><span class="line">return documentPath;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)audioCacheFolder</span><br><span class="line">&#123;</span><br><span class="line">NSString *audioFolder = [[self documentPath] stringByAppendingPathComponent:AUDIOCACHE];</span><br><span class="line">if (![FILEMANAGER fileExistsAtPath:audioFolder]) &#123;</span><br><span class="line">NSError *error = nil;</span><br><span class="line">[FILEMANAGER createDirectoryAtPath:audioFolder withIntermediateDirectories:YES attributes:nil error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog(@&quot;音频文件夹创建失败----%@&quot;, error);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return audioFolder;</span><br><span class="line">&#125;</span><br><span class="line">//用url作为文件名</span><br><span class="line">- (NSString *)audioFilePath:(NSString *)audioURL</span><br><span class="line">&#123;</span><br><span class="line">NSString *fileName = [audioURL stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;-&quot;];</span><br><span class="line">return [[self audioCacheFolder] stringByAppendingPathComponent:fileName];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//转化方法</span><br><span class="line">- (NSString *)audioPCMtoMP3:(NSString *)wavPath &#123;</span><br><span class="line">NSString *cafFilePath = wavPath;</span><br><span class="line">NSString *mp3FilePath = [self audioFilePath];</span><br><span class="line">if([FILEMANAGER removeItemAtPath:mp3FilePath error:nil])&#123; NSLog(@&quot;删除原MP3文件&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">@try</span><br><span class="line">&#123;</span><br><span class="line">int read, write;</span><br><span class="line">FILE *pcm = fopen([cafFilePath cStringUsingEncoding:1], &quot;rb&quot;);</span><br><span class="line">//source 被转换的音频文件位置</span><br><span class="line">fseek(pcm, 4*1024, SEEK_CUR);</span><br><span class="line">//skip file header</span><br><span class="line">FILE *mp3 = fopen([mp3FilePath cStringUsingEncoding:1], &quot;wb&quot;);</span><br><span class="line">//output 输出生成的Mp3文件位置</span><br><span class="line">const int PCM_SIZE = 8192;</span><br><span class="line">const int MP3_SIZE = 8192;</span><br><span class="line">short int pcm_buffer[PCM_SIZE*2];</span><br><span class="line">unsigned char mp3_buffer[MP3_SIZE];</span><br><span class="line">lame_t lame = lame_init();</span><br><span class="line">//        lame_set_in_samplerate(lame, 22050.0);</span><br><span class="line">lame_set_in_samplerate(lame, 4000.0);</span><br><span class="line">lame_set_VBR(lame, vbr_default); lame_init_params(lame);</span><br><span class="line">do &#123;</span><br><span class="line">read = fread(pcm_buffer, 2*sizeof(short int), PCM_SIZE, pcm);</span><br><span class="line">if (read == 0) write = lame_encode_flush(lame, mp3_buffer, MP3_SIZE);</span><br><span class="line">else write = lame_encode_buffer_interleaved(lame, pcm_buffer, read, mp3_buffer, MP3_SIZE);</span><br><span class="line">fwrite(mp3_buffer, write, 1, mp3);</span><br><span class="line"></span><br><span class="line">&#125;while (read != 0);</span><br><span class="line">lame_close(lame);</span><br><span class="line">fclose(mp3);</span><br><span class="line">fclose(pcm);</span><br><span class="line"></span><br><span class="line">&#125; @catch (NSException *exception) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;,[exception description]);</span><br><span class="line">return @&quot;&quot;;</span><br><span class="line">&#125; @finally &#123;</span><br><span class="line">return mp3FilePath;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>refer ： <a href="https://www.jianshu.com/p/864a9fbaa79e" target="_blank" rel="noopener">https://www.jianshu.com/p/864a9fbaa79e</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/my-hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/29/my-hello-world/" class="post-title-link" itemprop="url">使用gitlab+fastlane进行自动化构建</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-29 14:21:14" itemprop="dateCreated datePublished" datetime="2019-03-29T14:21:14+08:00">2019-03-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:59:13" itemprop="dateModified" datetime="2019-04-28T19:59:13+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>持续集成优点：<br>1、缩减开发周期，快速迭代版本</p>
+</blockquote>
+<blockquote>
+<p>2、提供分发效率，测试人员以及相关人员无需等待开发人员打包</p>
+</blockquote>
+<blockquote>
+<p>3、减少重复操作，高效打包，减轻开发人员工作量。</p>
+</blockquote>
+<blockquote>
+<p>4 . 将代码推送到新的分支，CI 服务器就会为您运行测试。 如果 job 都是绿色 的，你的代码是 OK 的。</p>
+</blockquote>
+<blockquote>
+<p>5 . 如果给定分支中的所有测试都是绿色的，则可以让 CI 服务器自动将代码部署到生产环境中。 这就是所谓的连续部署(Continuous Deployment) 。</p>
+</blockquote>
+<blockquote>
+<p>6 . 减少 code review 时间</p>
+</blockquote>
+<h2 id="搭建方法"><a href="#搭建方法" class="headerlink" title="搭建方法"></a>搭建方法</h2><h3 id="运行环境要求"><a href="#运行环境要求" class="headerlink" title="运行环境要求"></a>运行环境要求</h3><ul>
+<li>gitlab</li>
+<li>gitlabrunner</li>
+<li>fastlane</li>
+<li>钉钉机器人</li>
+</ul>
+<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><h4 id="1-安装-gitlab-runner"><a href="#1-安装-gitlab-runner" class="headerlink" title="1. 安装 gitlab runner"></a>1. 安装 gitlab runner</h4><ul>
+<li>Install GitLab Runner on macOS（我的是 mac 环境所以选择的 Install GitLab Runner on macOS）<br>*1.Download the binary for your system</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.Give it permissions to execute:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /usr/local/bin/gitlab-runner</span><br></pre></td></tr></table></figure>
+<h4 id="2-注册-gitlab-runner"><a href="#2-注册-gitlab-runner" class="headerlink" title="2. 注册 gitlab runner"></a>2. 注册 gitlab runner</h4><ul>
+<li>To register a Runner under macOS:<br>*1. Run the following command:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner register</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2Enter your GitLab instance URL: （你 gitlab 的地址）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )</span><br><span class="line">https://gitlab.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol start="3">
+<li>Enter the token you obtained to register the Runner:（CI/CD 中项目的 token）</li>
 </ol>
-<p>也就是在~/.cocoapods/repo目录下添加了一个以你的私有repo为名的文件夹</p>
-<p>现在为止，我们已经在本地得到我们自己的私有仓库 podsDemoSpecs ，这是一个空的仓库</p>
-<p>7.关联代码库和配置仓库<br>pod repo push podsDemoSpecs podsDemoSdk.podspec –use-libraries –allow-warnings</p>
-<p>至此仓库已经创建完成</p>
-<p>三，下面是在项目中的应用，直接在podfile文件中配置相关信息就好，pod install即可 </p>
-<p>谢谢，如果不足，请指正谢谢!</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci token for this runner</span><br><span class="line">xxx</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol start="4">
+<li>Enter a description for the Runner, you can change this later in GitLab’s UI:</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci description for this runner</span><br><span class="line">[hostame] my-runner</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol start="5">
+<li>Enter the <a href="https://docs.gitlab.com/ee/ci/runners/#using-tags" target="_blank" rel="noopener">tags associated with the Runner</a>, you can change this later in GitLab’s UI:</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the gitlab-ci tags for this runner (comma separated):</span><br><span class="line">my-tag,another-tag</span><br></pre></td></tr></table></figure>
+<ul>
+<li>6 Enter the <a href="https://docs.gitlab.com/runner/executors/README.html" target="_blank" rel="noopener">Runner executor</a>:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell:</span><br><span class="line">shel</span><br></pre></td></tr></table></figure>
+<h4 id="3-编写-yml-文件"><a href="#3-编写-yml-文件" class="headerlink" title="3. 编写 yml 文件"></a>3. 编写 yml 文件</h4><p><a href="https://docs.gitlab.com/ee/ci/yaml/README.html" target="_blank" rel="noopener">配置项目的 yml 文件进行相应的 job 操作</a><br><a href="https://docs.gitlab.com/ee/ci/yaml/README.html#validate-the-gitlab-ciyml" target="_blank" rel="noopener">校验 yml 文件是否正确</a><br><a href="https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-exec" target="_blank" rel="noopener">本地调试 yml 文件</a><br>安装 jq 这个输出报告的时候用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install jq</span><br></pre></td></tr></table></figure>
+<p>下面是我的 yml 文件仅供参考</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">//构建阶段</span><br><span class="line">stages:</span><br><span class="line">- build</span><br><span class="line">- buildAndUpload</span><br><span class="line">- failure</span><br><span class="line"></span><br><span class="line">//构建前配置</span><br><span class="line">before_script:</span><br><span class="line">- export LANG=en_US.UTF-8</span><br><span class="line">- export FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT=120</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># build for branch test   build and upload to pgyer.</span><br><span class="line">job1:</span><br><span class="line">//注册 runner tag名 可以多个</span><br><span class="line">tags:</span><br><span class="line">- wangweitags</span><br><span class="line">stage: buildAndUpload</span><br><span class="line">script:</span><br><span class="line"># - sh ./Shell/dingtalk.sh &quot;新版本&quot; &quot;# 构建新版本（justademo）&quot;</span><br><span class="line">- echo $(pwd)</span><br><span class="line">- echo &quot;build job1&quot;</span><br><span class="line">- pod install</span><br><span class="line">- git reset --hard</span><br><span class="line">// fastlane 自动化构建</span><br><span class="line">- fastlane dev</span><br><span class="line">// 输出相关的git commit等相关信息</span><br><span class="line">- export pgyerDes=`git log -10 --oneline | cut -d &quot; &quot; -f2- | grep -E &apos;^\[.*|.*finish$&apos;`</span><br><span class="line">- echo $&#123;pgyerDes&#125;</span><br><span class="line">- echo $(pwd)</span><br><span class="line">- echo $(ls)</span><br><span class="line">- export result=$(curl -# -F &quot;file=@../product/LZMDYW.ipa&quot; -F &quot;_api_key=2c34b4faa9e0559667c828f415f7ebee&quot; -F &quot;userKey=1ce44e894fbe779bbf23e75d12c482d8&quot; -F &quot;buildUpdateDescription=$&#123;pgyerDes&#125;&quot;  https://www.pgyer.com/apiv2/app/upload)</span><br><span class="line">- echo $&#123;result&#125; | jq</span><br><span class="line">- export buildKey=`echo $&#123;result&#125; | jq  &apos;. | .data.buildKey&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">buildQRCodeURL=`echo $&#123;result&#125; | jq  &apos;. | .data.buildQRCodeURL&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">buildVersion=`echo $&#123;result&#125; | jq  &apos;. | .data.buildVersion+&quot;(&quot;+.data.buildBuildVersion+&quot;)&quot;&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">buildUpdated=`echo $&#123;result&#125; | jq  &apos;. | .data.buildUpdated&apos; | awk -F &apos;&quot;&apos; &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">change_log=`git log -20 --oneline | cut -d &quot; &quot; -f2- | grep -E &apos;^\[.*|.*finish$&apos; | awk &apos;&#123;&#123;printf&quot;##### %s; \n&quot;,$0&#125;&#125;&apos;`</span><br><span class="line">- export text=&quot;### 版本&quot;$&#123;buildVersion&#125;&quot; \n &gt; 更新记录 \n\n &gt; &quot;$&#123;change_log&#125;&quot; \n\n &gt; ![screenshot](&quot;$&#123;buildQRCodeURL&#125;&quot;)\n##### [下载链接](https://www.pgyer.com/&quot;$&#123;buildKey&#125;&quot;)\n\n###### 上传日期:&quot;$&#123;buildUpdated&#125;&quot;&quot;</span><br><span class="line">//钉钉脚本</span><br><span class="line">- sh ./Shell/dingtalk.sh &quot;新版本&quot; &quot;$text&quot;</span><br><span class="line">only:</span><br><span class="line">- /^test.*$/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># build for branch  only build.</span><br><span class="line">job2:</span><br><span class="line">tags:</span><br><span class="line">- wangweitags</span><br><span class="line">stage: build</span><br><span class="line">script:</span><br><span class="line"># - sh ./Shell/dingtalk.sh &quot;新版本&quot; &quot;# 构建新版本（justademo）&quot;</span><br><span class="line">- echo $(pwd)</span><br><span class="line">- echo &quot;build job2&quot;</span><br><span class="line">- pod install</span><br><span class="line">- git reset --hard</span><br><span class="line">//fastlen 构建</span><br><span class="line">- fastlane CI_dev</span><br><span class="line">only:</span><br><span class="line">- dev</span><br><span class="line">- master</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># notify when a build has errored</span><br><span class="line">build_failure_job:</span><br><span class="line">tags:</span><br><span class="line">- wangweitags</span><br><span class="line">stage: failure</span><br><span class="line">script:</span><br><span class="line">// 丁丁脚本</span><br><span class="line">- sh ../Shell/dingtalk.sh &quot;新版本&quot; &quot;# 构建失败（LZMDYW）&quot;</span><br><span class="line">when: on_failure</span><br></pre></td></tr></table></figure>
+<h4 id="4-fastlane-构建"><a href="#4-fastlane-构建" class="headerlink" title="4. fastlane 构建"></a>4. fastlane 构建</h4><p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p>
+<h5 id="（1）安装-xcode-命令行工具"><a href="#（1）安装-xcode-命令行工具" class="headerlink" title="（1）安装 xcode 命令行工具"></a>（1）安装 xcode 命令行工具</h5><ul>
+<li>xcode-select –install，如果没有安装，会弹出对话框，点击安装。如果提示 xcode-select: error: command line tools are already installed, use “Software Update” to install updates 表示已经安装</li>
+</ul>
+<p>#####（2） 安装 Fastlane<br>sudo gem install fastlane -NV 或是 brew cask install fastlane 我这里使用 gem 安装的<br>安装完了执行 fastlane –version，确认下是否安装完成和当前使用的版本号。</p>
+<h5 id="（3）初始化-Fastlane"><a href="#（3）初始化-Fastlane" class="headerlink" title="（3）初始化 Fastlane"></a>（3）初始化 Fastlane</h5><p>cd 到你的项目目录执行<br>fastlane init</p>
+<h5 id="（4）打包到蒲公英"><a href="#（4）打包到蒲公英" class="headerlink" title="（4）打包到蒲公英"></a>（4）打包到蒲公英</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane add_plugin pgyer</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自己的 fastlane 脚本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">default_platform(:ios)</span><br><span class="line"></span><br><span class="line">platform :ios do</span><br><span class="line">desc &quot;Description of what the lane does&quot;</span><br><span class="line"></span><br><span class="line">lane :dev do</span><br><span class="line"></span><br><span class="line">sigh(force: true,</span><br><span class="line">username: &quot;开发者账号&quot;,</span><br><span class="line">app_identifier: &quot;bundleid&quot;,</span><br><span class="line">output_path: &apos;.ipa包输出路径&apos;,</span><br><span class="line">adhoc: true （是否adhoc）</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">build_app(</span><br><span class="line">workspace: &quot;XXXX.xcworkspace&quot;,</span><br><span class="line">configuration: &quot;Debug&quot;, （scheme配置）</span><br><span class="line">scheme: &quot;XXXX&quot;,</span><br><span class="line">export_method: &quot;ad-hoc&quot;,</span><br><span class="line">output_directory:&quot;.ipa包输出路径&quot;,</span><br><span class="line">include_bitcode:true,</span><br><span class="line">)</span><br><span class="line">// 打包到蒲公英</span><br><span class="line">pgyer(</span><br><span class="line">api_key: &quot;&quot;,</span><br><span class="line">user_key: &quot;&quot;,</span><br><span class="line">update_description: &quot;scheme is dev, update by fastlane&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">lane :CI_dev do</span><br><span class="line"></span><br><span class="line">sigh(force: true,</span><br><span class="line">username: &quot;开发者账号&quot;,</span><br><span class="line">app_identifier: &quot;bundleid&quot;,</span><br><span class="line">output_path: &apos;.ipa包输出路径&apos;,</span><br><span class="line">adhoc: true （是否adhoc）</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">build_app(</span><br><span class="line">workspace: &quot;XXXX.xcworkspace&quot;,</span><br><span class="line">configuration: &quot;Debug&quot;, （scheme配置）</span><br><span class="line">scheme: &quot;XXXX&quot;,</span><br><span class="line">export_method: &quot;ad-hoc&quot;,</span><br><span class="line">output_directory:&quot;.ipa包输出路径&quot;,</span><br><span class="line">include_bitcode:true,</span><br><span class="line">)</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="5-钉钉通知"><a href="#5-钉钉通知" class="headerlink" title="5.钉钉通知"></a>5.钉钉通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#! bin/bash</span><br><span class="line">echo $2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">curl &apos; 放自己注册的钉钉机器人的token&apos; \</span><br><span class="line">-H &quot;Content-Type:application/json&quot;  \</span><br><span class="line">-d &quot;&#123; \</span><br><span class="line">markdown:&#123; \</span><br><span class="line">title:&apos;$1&apos;, \</span><br><span class="line">text:&apos;$2&apos; \</span><br><span class="line">&#125;,  \</span><br><span class="line">msgtype:&apos;markdown&apos; \</span><br><span class="line">&#125;&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="6-fastlane-构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）"><a href="#6-fastlane-构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）" class="headerlink" title="6 fastlane 构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）"></a>6 fastlane 构建注意事项（三天两头的加测试机，手动更新配置文件更新实在是太麻烦了，要不老是提示双重认证）</h3><p>refer：<a href="https://blog.csdn.net/weixin_34293911/article/details/87011860" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34293911/article/details/87011860</a></p>
+<ul>
+<li>fastlane iOS 双重认证 更新配置文件<br>这个时候就用到这个，他可以自动管理配置开发者等信息<br><a href="https://github.com/fastlane/fastlane/tree/master/spaceship" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/spaceship</a></li>
+<li>访问 AppleId 管理站</li>
+<li>找到 安全 - App 专用密码，生成一个专用密码</li>
+<li>配置环境变量 vim ~/.bash_profile</li>
+<li>export</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=YOUR_PSD</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行 fastlane spaceauth -u <a href="mailto:abcd@qq.com" target="_blank" rel="noopener">abcd@qq.com</a> 按提示获取 session 信息。</li>
+<li>复制 session 信息（很长一大段） 配置环境变量 vim ~/.bash_profile</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export FASTLANE_SESSION=&apos;YOUR SESSION&apos;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -914,7 +1197,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/静态库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/aduiomix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -934,7 +1217,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/28/静态库/" class="post-title-link" itemprop="url">创建静态私有库</a>
+                <a href="/2019/03/28/aduiomix/" class="post-title-link" itemprop="url">iOS音频合并的多种方式</a>
               
             
           </h1>
@@ -959,610 +1242,24 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
                 
               
 
-              <time title="Created: 2019-04-28 15:31:25 / Modified: 15:32:08" itemprop="dateCreated datePublished" datetime="2019-04-28T15:31:25+08:00">2019-04-28</time>
+              <time title="Created: 2019-03-28 15:27:04" itemprop="dateCreated datePublished" datetime="2019-03-28T15:27:04+08:00">2019-03-28</time>
             
 
             
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>在上篇文章中介绍了Cocoapods私有库的创建<br>有些时候我们并不希望别人引用咱们的库的时候看见我们的相关实现代码，这个时候就需要将相关代码，打成静态库。<br>第一 .a和.framwork的区别：<br>iOS静态库形式和动态库形式：<br>静态库：.a和.framework<br>动态库：.dylib和.framework<br>.a是一个纯二进制文件，.framework中除了有二进制文件外还有资源文件。<br>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。<br>.a + .h + sourceFile = .framework<br>第二 我们可以通过两种方式进行静态库的打包，<br>1是手动打包比较麻烦，网上有好多相关教程，这里就不一一介绍了<br>2命令行打包，这个比较简单，一条命令即可<br>1）安装打包插件<br>终端执行以下命令<br>sudo gem install cocoapods-packager<br>2）进入私有库目录 然后将源码导入classes 目录下  然后执行下面的命令<br>pod package demo.podspec –library –force<br>其中–library指定打包成.a文件，如果不带上将会打包成.framework文件。–force是指强制覆盖。<br>这个时候目录下会多出一个文件夹<br><img src="https://upload-images.jianshu.io/upload_images/2078724-580fef30275241cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午2.10.29.png"><br>然后将framework文件复制到aesEncrypts/Framework/下面<br>第三 配置相关私有库信息<br>1）将相关framework导入私有库目录下<br>2）配置spec文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6bdc533000be861b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午2.13.58.png"></p>
-</blockquote>
-<p>管理.framework<br>跟管理.a类似，同样是生成通用framework。只不过podspec有点不同。.a是s.vendored_libraries，.framework是s.vendored_frameworks。<br>3）.tag标记,并且上传<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/// 第一次需要在前面加一个v</span><br><span class="line">git tag &quot;v1.0.0&quot;</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure></p>
-<p>6.验证.podspec</p>
-<p>方式一<br>// 加上–verbose验证失败会显示详细的报错信息<br>pod spec lint aesEncrypts.podspec –verbose<br>方式二<br>pod spec lint<br>7.发布自己的.podspec到cocoapods<br>pod trunk push aesEncrypts.podspec<br>如果有警告用:pod trunk push aesEncrypts.podspec –allow-warnings</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-392c5880c7d35c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-20 上午10.17.05.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-3b60db622439bce6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-20 上午10.17.28.png"></p>
-<blockquote>
-<p>注意：注意cocopods 版本 不要用beta 版本进行创建，要不lib 验证可以通过，但是spec 方式验证会出错。<br>pod spec相对于pod lib 会更为精确，pod lib相当于只验证一个本地仓库，pod spec会同时验证本地仓库和远程仓库。 如果spec文件不通过，spec 文件是不能上传到远程仓库</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/fastlane-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/28/fastlane-test/" class="post-title-link" itemprop="url">结合fastlane 组件进行自动化测试</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
-              
-
-              <time title="Created: 2019-04-28 15:31:11 / Modified: 15:31:49" itemprop="dateCreated datePublished" datetime="2019-04-28T15:31:11+08:00">2019-04-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>1.Xcode创建一个含有Unit Tests的项目<br>1）单元测试target设置<br>info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的<br>2.安装fastlane<br>1）sudo gem install fastlane -NV或是brew cask install fastlane我这里使用gem安装的<br>2）安装完了执行fastlane –version，确认下是否安装完成和当前使用的版本号。、&gt;3.初始化Fastlane<br>1）cd到你的项目目录执行<br>2）fastlane init<br>初始化成功后会在当前工程目录生成一个fastlane文件夹<br>Appfile主要存放App的apple_id team_id app_identifier等信息<br>Deliverfile中为发布的配置信息，一般情况用不到。<br>Fastfile是我们最应该关注的文件，也是我们的工作文件。<br>4) 添加组件<br>fastlane add_plugin xcpretty_report 用于生成测试报告<br>5）配置Fastfile相关信息<br><code>`</code><br>default_platform(:ios)</p>
-</blockquote>
-<p>platform :ios do</p>
-<p>desc “自动化测试”</p>
-<p>lane :unittest do<br>UI.message(“start  xcodebuild”)<br>xcodebuild(<br>test: true,<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>destination: “platform=iOS Simulator,name=iPhone XR,OS=12.1”,<br>)<br>UI.message(“success  xcodebuild”)</p>
-<p>xcpretty_report(<br>buildlog_path: ‘fastlane’,<br>output_path: ‘fastlane/reports’,<br>use_json_formatter: true<br>)  </p>
-<h1 id="gym"><a href="#gym" class="headerlink" title="gym("></a>gym(</h1><h1 id="xcpretty-report-html-”tests-html”"><a href="#xcpretty-report-html-”tests-html”" class="headerlink" title="xcpretty_report_html:”tests.html”,"></a>xcpretty_report_html:”tests.html”,</h1><h1 id><a href="#" class="headerlink" title=")"></a>)</h1><p>UI.message(“start  xcov”)<br>xcov(<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>html_report: “true”,<br>json_report: “true”,<br>output_directory:”quickDemoesss”<br>)<br>UI.message(“success  xcov”)</p>
-<p>desc “读取覆盖率”<br>file = File.read(File.expand_path(“/Users/edz/Desktop/quickDemo/quickDemoesss/report.json”))<br>if file<br>data = JSON.parse(file)<br>UI.message(data)<br>UI.message(data[“coverage”])<br>else<br>UI.error(“Unable to open file!”)<br>return<br>end<br>end</p>
-<p>end<br><code>`</code>  </p>
-<blockquote>
-<p>6 执行 fastlane   unittest</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/uitouch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+                <span class="post-meta-divider">|</span>
                 
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
                 
-                <a href="/2019/04/28/uitouch/" class="post-title-link" itemprop="url">UItouch事件被tableview拦截</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
+                  <span class="post-meta-item-text">Edited on</span>
                 
-              
-
-              <time title="Created: 2019-04-28 15:27:46 / Modified: 15:30:47" itemprop="dateCreated datePublished" datetime="2019-04-28T15:27:46+08:00">2019-04-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>最近做项目用到了手写签名的功能，手写签名的view是通过UItouch相关方法画线实现的，因为页面UI是列表形式，手写签名view 需要添加到tableview的footview上，这个时候就出现了问题，手写签名view的touch被tableview拦截了，这个时候再去操作view 签名的时候 是不能成功呢，而且页面会滚动。 下面我记录一下我的处理方式<br>1.一开始我以为像网上的方式，给tableview创建一个子类然后引入touch 方法：<br>refer <a href="https://blog.csdn.net/qq_42839789/article/details/81501832" target="_blank" rel="noopener">https://blog.csdn.net/qq_42839789/article/details/81501832</a><br>但是view的touch 会覆盖tableviewtouch 并不能解决问题。<br>2.这个时候我想到hittest 方法通过事件响应机制，判断触摸的view是不是签名view 如果是让tableview暂时停止滚动，如果不是正常滚动。<br>具体实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface WYTouchTableView : UITableView</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">#import &quot;WYTouchTableView.h&quot;</span><br><span class="line">#import &quot;HJSignatureView.h&quot;</span><br><span class="line">@implementation WYTouchTableView</span><br><span class="line"></span><br><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">UIView *viewReturn =[super hitTest:point withEvent:event];</span><br><span class="line">//在touchView区域</span><br><span class="line">if ([viewReturn isKindOfClass:[HJSignatureView class]]) &#123;</span><br><span class="line">self.scrollEnabled = NO;</span><br><span class="line">return viewReturn;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">self.scrollEnabled = YES;</span><br><span class="line">&#125;</span><br><span class="line">//不在touchView区域，正常操作</span><br><span class="line">return viewReturn;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/muitiple-error/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/28/muitiple-error/" class="post-title-link" itemprop="url">multiple commands produce ''    日常error记载</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-28 15:27:22 / Modified: 15:30:24" itemprop="dateCreated datePublished" datetime="2019-04-28T15:27:22+08:00">2019-04-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>下载别人demo 或者日常写项目中会遇到类似如下的bug：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-d0ff1f851fed80d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.36.png"><br>这个时候可以通过如下方式，删除info.plist 然后command+R 允许即可 完美：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-e1661de22ec2bf8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.53.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/aduiomix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/28/aduiomix/" class="post-title-link" itemprop="url">iOS音频合并的多种方式</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-28 15:27:04 / Modified: 15:30:00" itemprop="dateCreated datePublished" datetime="2019-04-28T15:27:04+08:00">2019-04-28</time>
-            
-
-            
-              
-
+                <time title="Modified: 2019-04-28 19:57:48" itemprop="dateModified" datetime="2019-04-28T19:57:48+08:00">2019-04-28</time>
               
             
           </span>
@@ -1678,7 +1375,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/lame转化/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/uitouch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -1698,7 +1395,7 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/28/lame转化/" class="post-title-link" itemprop="url">通过lame 进行音频格式转化</a>
+                <a href="/2019/02/20/uitouch/" class="post-title-link" itemprop="url">UItouch事件被tableview拦截</a>
               
             
           </h1>
@@ -1723,12 +1420,24 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
                 
               
 
-              <time title="Created: 2019-04-28 15:26:39 / Modified: 15:29:07" itemprop="dateCreated datePublished" datetime="2019-04-28T15:26:39+08:00">2019-04-28</time>
+              <time title="Created: 2019-02-20 15:27:46" itemprop="dateCreated datePublished" datetime="2019-02-20T15:27:46+08:00">2019-02-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:59:29" itemprop="dateModified" datetime="2019-04-28T19:59:29+08:00">2019-04-28</time>
               
             
           </span>
@@ -1764,28 +1473,511 @@ lipo -info AipBase.framework/AipBase # Architectures in the fat file: AipBase ar
       
         
           
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
-<p> 因为上一篇音频合成中遇到了一个问题，合成工具不支持wav音频格式转化，而且录音所得的wav格式  是无损的格式，标准的wav采样率为44100Hz，也是CD标准格式；mp3属于有损压缩文件，不过体积小，便于保存。<br>lame  下载下来不能直接用</p>
+            <blockquote>
+<p>最近做项目用到了手写签名的功能，手写签名的view是通过UItouch相关方法画线实现的，因为页面UI是列表形式，手写签名view 需要添加到tableview的footview上，这个时候就出现了问题，手写签名view的touch被tableview拦截了，这个时候再去操作view 签名的时候 是不能成功呢，而且页面会滚动。 下面我记录一下我的处理方式<br>1.一开始我以为像网上的方式，给tableview创建一个子类然后引入touch 方法：<br>refer <a href="https://blog.csdn.net/qq_42839789/article/details/81501832" target="_blank" rel="noopener">https://blog.csdn.net/qq_42839789/article/details/81501832</a><br>但是view的touch 会覆盖tableviewtouch 并不能解决问题。<br>2.这个时候我想到hittest 方法通过事件响应机制，判断触摸的view是不是签名view 如果是让tableview暂时停止滚动，如果不是正常滚动。<br>具体实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface WYTouchTableView : UITableView</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">#import &quot;WYTouchTableView.h&quot;</span><br><span class="line">#import &quot;HJSignatureView.h&quot;</span><br><span class="line">@implementation WYTouchTableView</span><br><span class="line"></span><br><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">UIView *viewReturn =[super hitTest:point withEvent:event];</span><br><span class="line">//在touchView区域</span><br><span class="line">if ([viewReturn isKindOfClass:[HJSignatureView class]]) &#123;</span><br><span class="line">self.scrollEnabled = NO;</span><br><span class="line">return viewReturn;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">self.scrollEnabled = YES;</span><br><span class="line">&#125;</span><br><span class="line">//不在touchView区域，正常操作</span><br><span class="line">return viewReturn;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<h3 id="依赖的东西-："><a href="#依赖的东西-：" class="headerlink" title="依赖的东西 ："></a>依赖的东西 ：</h3><p><a href="https://sourceforge.net/projects/lame/files/lame/" target="_blank" rel="noopener">lame库下载地址</a><br><a href="https://github.com/kewlbear/lame-ios-build" target="_blank" rel="noopener">lame 静态库打包工具地址</a></p>
-<h3 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h3><ul>
-<li>把下载的lame和build-lame.sh放在一个文件夹下</li>
-</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/静态库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/28/静态库/" class="post-title-link" itemprop="url">创建静态私有库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-28 12:31:25" itemprop="dateCreated datePublished" datetime="2019-01-28T12:31:25+08:00">2019-01-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:57:35" itemprop="dateModified" datetime="2019-04-28T19:57:35+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在上篇文章中介绍了Cocoapods私有库的创建<br>有些时候我们并不希望别人引用咱们的库的时候看见我们的相关实现代码，这个时候就需要将相关代码，打成静态库。<br>第一 .a和.framwork的区别：<br>iOS静态库形式和动态库形式：<br>静态库：.a和.framework<br>动态库：.dylib和.framework<br>.a是一个纯二进制文件，.framework中除了有二进制文件外还有资源文件。<br>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。<br>.a + .h + sourceFile = .framework<br>第二 我们可以通过两种方式进行静态库的打包，<br>1是手动打包比较麻烦，网上有好多相关教程，这里就不一一介绍了<br>2命令行打包，这个比较简单，一条命令即可<br>1）安装打包插件<br>终端执行以下命令<br>sudo gem install cocoapods-packager<br>2）进入私有库目录 然后将源码导入classes 目录下  然后执行下面的命令<br>pod package demo.podspec –library –force<br>其中–library指定打包成.a文件，如果不带上将会打包成.framework文件。–force是指强制覆盖。<br>这个时候目录下会多出一个文件夹<br><img src="https://upload-images.jianshu.io/upload_images/2078724-580fef30275241cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午2.10.29.png"><br>然后将framework文件复制到aesEncrypts/Framework/下面<br>第三 配置相关私有库信息<br>1）将相关framework导入私有库目录下<br>2）配置spec文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6bdc533000be861b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午2.13.58.png"></p>
+</blockquote>
+<p>管理.framework<br>跟管理.a类似，同样是生成通用framework。只不过podspec有点不同。.a是s.vendored_libraries，.framework是s.vendored_frameworks。<br>3）.tag标记,并且上传<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/// 第一次需要在前面加一个v</span><br><span class="line">git tag &quot;v1.0.0&quot;</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure></p>
+<p>6.验证.podspec</p>
+<p>方式一<br>// 加上–verbose验证失败会显示详细的报错信息<br>pod spec lint aesEncrypts.podspec –verbose<br>方式二<br>pod spec lint<br>7.发布自己的.podspec到cocoapods<br>pod trunk push aesEncrypts.podspec<br>如果有警告用:pod trunk push aesEncrypts.podspec –allow-warnings</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-392c5880c7d35c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-20 上午10.17.05.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-3b60db622439bce6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-20 上午10.17.28.png"></p>
 <blockquote>
-<p>注意 # build-lame.sh 中 #directories SOURCE=”lame”<br>这里lame是来源文件名</p>
-<ul>
-<li>在创建的目录下执行 bulid 脚本 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./build-lame.sh</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>注意：注意cocopods 版本 不要用beta 版本进行创建，要不lib 验证可以通过，但是spec 方式验证会出错。<br>pod spec相对于pod lib 会更为精确，pod lib相当于只验证一个本地仓库，pod spec会同时验证本地仓库和远程仓库。 如果spec文件不通过，spec 文件是不能上传到远程仓库</p>
 </blockquote>
-<ul>
-<li><p>下面 fat-lame 中就是我们想要的东西，将.a 文件和.h文件放入项目即可<br><img src="https://upload-images.jianshu.io/upload_images/2078724-5a3159d4188cdaea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-28 上午11.02.30.png"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/cocopodKu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/18/cocopodKu/" class="post-title-link" itemprop="url">创建cocopods私有库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-18 15:32:40" itemprop="dateCreated datePublished" datetime="2019-01-18T15:32:40+08:00">2019-01-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:57:59" itemprop="dateModified" datetime="2019-04-28T19:57:59+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通常我们项目中都有一些公共的组件需要抽离出来，减少依赖，今天跟大家介绍的就是怎么通过cocopods创建私有库，引入到项目中供大家使用。<br>一 首先要明白两个概念:<br>1.code repository是代码库。<br>2.spec repository是配置仓库，所有的配置按照包名、源地址，相关依赖的存放在这个仓库。这个仓库只用来存放podspec文件，不存放代码。<br>二 创建cocopods仓库相关步骤：<br>1.在本地创建lib仓库<br>pod  lib create    podsDemoSdk<br>1）相关目录结构如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-b37b90b47e07be12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.22.png"><br>2）创建时候相关信息如下：<br><img src="https://upload-images.jianshu.io/upload_images/2078724-5d088d4376e0da76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.35.39.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2078724-195852b6c15ae626.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-02-24 下午1.36.00.png"></p>
+<ol start="2">
+<li>将本地仓库关联到远端git仓库 我们用的是gitlab 创建的git仓库<br>1）git add .  #不但可以[跟单]文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了，注意空格<br>2）git commit -m “注释” #把文件提交到仓库<br>3）git remote add origin  远程仓库地址              #本地关联远程仓库<br>4）git push -u origin master #把本地库的所有内容推送到远程库上（第一次需要加-u，后面就不用加了）</li>
+<li>将相关sdk 代码放在 podsDemoSdk/Classes 目录下<br>4.配置相关spec 文件<br><img src="https://upload-images.jianshu.io/upload_images/2078724-a8d942bc6771a1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br>配置相关远程仓库地址和相关内容，按着图中格式配就行了。</li>
+<li><p>验证podspec的有效性，打开终端 cd 到podsDemoSdk的目录中<br>接着运行pod lib lint<br>如果有警告，会导致无法通过，需要添加–allow-warnings<br>如果使用了c函数相关的，需要添加–use-libraries<br>显示pass 字眼 验证通过后，把代码提交到仓库即可<br>5.把代码提交到仓库即可<br>git add -A<br>git commit -m “add pod files”<br>git remote add origin 远程仓库     //连接远程github项目<br>git tag ‘0.1.0’  //这里的版本号注意要和podspec文件中的版本号统一<br>git push –tags        //将本地tag更新到github项目上去<br>git push origin master    //将本地项目更新到github项目上去</p>
 </li>
-<li><p>wav 转map3 相关代码</p>
+<li><p>创建一个spec私有仓库<br>现在GitLab上面创建一个私有仓库，用来存放私有依赖代码库的配置<br>在终端执行命令：<br>pod repo add  podsDemoSpecs spec仓库地址</p>
 </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">#define AUDIOCACHE @&quot;音频存放目录&quot;</span><br><span class="line">文件管理</span><br><span class="line">#define FILEMANAGER [NSFileManager defaultManager]</span><br><span class="line"></span><br><span class="line">- (NSString *)documentPath</span><br><span class="line">&#123;</span><br><span class="line">NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;</span><br><span class="line">return documentPath;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)audioCacheFolder</span><br><span class="line">&#123;</span><br><span class="line">NSString *audioFolder = [[self documentPath] stringByAppendingPathComponent:AUDIOCACHE];</span><br><span class="line">if (![FILEMANAGER fileExistsAtPath:audioFolder]) &#123;</span><br><span class="line">NSError *error = nil;</span><br><span class="line">[FILEMANAGER createDirectoryAtPath:audioFolder withIntermediateDirectories:YES attributes:nil error:&amp;error];</span><br><span class="line">if (error) &#123;</span><br><span class="line">NSLog(@&quot;音频文件夹创建失败----%@&quot;, error);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return audioFolder;</span><br><span class="line">&#125;</span><br><span class="line">//用url作为文件名</span><br><span class="line">- (NSString *)audioFilePath:(NSString *)audioURL</span><br><span class="line">&#123;</span><br><span class="line">NSString *fileName = [audioURL stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;-&quot;];</span><br><span class="line">return [[self audioCacheFolder] stringByAppendingPathComponent:fileName];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//转化方法</span><br><span class="line">- (NSString *)audioPCMtoMP3:(NSString *)wavPath &#123;</span><br><span class="line">NSString *cafFilePath = wavPath;</span><br><span class="line">NSString *mp3FilePath = [self audioFilePath];</span><br><span class="line">if([FILEMANAGER removeItemAtPath:mp3FilePath error:nil])&#123; NSLog(@&quot;删除原MP3文件&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">@try</span><br><span class="line">&#123;</span><br><span class="line">int read, write;</span><br><span class="line">FILE *pcm = fopen([cafFilePath cStringUsingEncoding:1], &quot;rb&quot;);</span><br><span class="line">//source 被转换的音频文件位置</span><br><span class="line">fseek(pcm, 4*1024, SEEK_CUR);</span><br><span class="line">//skip file header</span><br><span class="line">FILE *mp3 = fopen([mp3FilePath cStringUsingEncoding:1], &quot;wb&quot;);</span><br><span class="line">//output 输出生成的Mp3文件位置</span><br><span class="line">const int PCM_SIZE = 8192;</span><br><span class="line">const int MP3_SIZE = 8192;</span><br><span class="line">short int pcm_buffer[PCM_SIZE*2];</span><br><span class="line">unsigned char mp3_buffer[MP3_SIZE];</span><br><span class="line">lame_t lame = lame_init();</span><br><span class="line">//        lame_set_in_samplerate(lame, 22050.0);</span><br><span class="line">lame_set_in_samplerate(lame, 4000.0);</span><br><span class="line">lame_set_VBR(lame, vbr_default); lame_init_params(lame);</span><br><span class="line">do &#123;</span><br><span class="line">read = fread(pcm_buffer, 2*sizeof(short int), PCM_SIZE, pcm);</span><br><span class="line">if (read == 0) write = lame_encode_flush(lame, mp3_buffer, MP3_SIZE);</span><br><span class="line">else write = lame_encode_buffer_interleaved(lame, pcm_buffer, read, mp3_buffer, MP3_SIZE);</span><br><span class="line">fwrite(mp3_buffer, write, 1, mp3);</span><br><span class="line"></span><br><span class="line">&#125;while (read != 0);</span><br><span class="line">lame_close(lame);</span><br><span class="line">fclose(mp3);</span><br><span class="line">fclose(pcm);</span><br><span class="line"></span><br><span class="line">&#125; @catch (NSException *exception) &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;,[exception description]);</span><br><span class="line">return @&quot;&quot;;</span><br><span class="line">&#125; @finally &#123;</span><br><span class="line">return mp3FilePath;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>refer ： <a href="https://www.jianshu.com/p/864a9fbaa79e" target="_blank" rel="noopener">https://www.jianshu.com/p/864a9fbaa79e</a></p>
+</ol>
+<p>也就是在~/.cocoapods/repo目录下添加了一个以你的私有repo为名的文件夹</p>
+<p>现在为止，我们已经在本地得到我们自己的私有仓库 podsDemoSpecs ，这是一个空的仓库</p>
+<p>7.关联代码库和配置仓库<br>pod repo push podsDemoSpecs podsDemoSdk.podspec –use-libraries –allow-warnings</p>
+<p>至此仓库已经创建完成</p>
+<p>三，下面是在项目中的应用，直接在podfile文件中配置相关信息就好，pod install即可 </p>
+<p>谢谢，如果不足，请指正谢谢!</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/fastlane-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangwei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangwei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/28/fastlane-test/" class="post-title-link" itemprop="url">结合fastlane 组件进行自动化测试</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-28 15:31:11" itemprop="dateCreated datePublished" datetime="2018-12-28T15:31:11+08:00">2018-12-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-28 19:58:15" itemprop="dateModified" datetime="2019-04-28T19:58:15+08:00">2019-04-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>1.Xcode创建一个含有Unit Tests的项目<br>1）单元测试target设置<br>info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的<br>2.安装fastlane<br>1）sudo gem install fastlane -NV或是brew cask install fastlane我这里使用gem安装的<br>2）安装完了执行fastlane –version，确认下是否安装完成和当前使用的版本号。、&gt;3.初始化Fastlane<br>1）cd到你的项目目录执行<br>2）fastlane init<br>初始化成功后会在当前工程目录生成一个fastlane文件夹<br>Appfile主要存放App的apple_id team_id app_identifier等信息<br>Deliverfile中为发布的配置信息，一般情况用不到。<br>Fastfile是我们最应该关注的文件，也是我们的工作文件。<br>4) 添加组件<br>fastlane add_plugin xcpretty_report 用于生成测试报告<br>5）配置Fastfile相关信息<br><code>`</code><br>default_platform(:ios)</p>
+</blockquote>
+<p>platform :ios do</p>
+<p>desc “自动化测试”</p>
+<p>lane :unittest do<br>UI.message(“start  xcodebuild”)<br>xcodebuild(<br>test: true,<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>destination: “platform=iOS Simulator,name=iPhone XR,OS=12.1”,<br>)<br>UI.message(“success  xcodebuild”)</p>
+<p>xcpretty_report(<br>buildlog_path: ‘fastlane’,<br>output_path: ‘fastlane/reports’,<br>use_json_formatter: true<br>)  </p>
+<h1 id="gym"><a href="#gym" class="headerlink" title="gym("></a>gym(</h1><h1 id="xcpretty-report-html-”tests-html”"><a href="#xcpretty-report-html-”tests-html”" class="headerlink" title="xcpretty_report_html:”tests.html”,"></a>xcpretty_report_html:”tests.html”,</h1><h1 id><a href="#" class="headerlink" title=")"></a>)</h1><p>UI.message(“start  xcov”)<br>xcov(<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>html_report: “true”,<br>json_report: “true”,<br>output_directory:”quickDemoesss”<br>)<br>UI.message(“success  xcov”)</p>
+<p>desc “读取覆盖率”<br>file = File.read(File.expand_path(“/Users/edz/Desktop/quickDemo/quickDemoesss/report.json”))<br>if file<br>data = JSON.parse(file)<br>UI.message(data)<br>UI.message(data[“coverage”])<br>else<br>UI.error(“Unable to open file!”)<br>return<br>end<br>end</p>
+<p>end<br><code>`</code>  </p>
+<blockquote>
+<p>6 执行 fastlane   unittest</p>
+</blockquote>
 
           
         

@@ -96,13 +96,17 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wangwei">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结合fastlane 组件进行自动化测试">
+<meta property="og:url" content="http://yoursite.com/2018/12/28/fastlane-test/index.html">
 <meta property="og:site_name" content="wangwei">
+<meta property="og:description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-28T11:58:15.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangwei">
+<meta name="twitter:title" content="结合fastlane 组件进行自动化测试">
+<meta name="twitter:description" content="1.Xcode创建一个含有Unit Tests的项目1）单元测试target设置info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的2.安装fastlane1）sudo gem install fastlane -NV或是brew cask install fastl">
 
 
 
@@ -110,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/28/fastlane-test/">
 
 
 
@@ -120,7 +124,7 @@
   };
 </script>
 
-  <title>wangwei</title>
+  <title>结合fastlane 组件进行自动化测试 | wangwei</title>
   
 
 
@@ -168,8 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,9 +295,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -309,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/xcode10/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/fastlane-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wangwei">
@@ -326,10 +329,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/28/xcode10/" class="post-title-link" itemprop="url">xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash</a>
+          <h1 class="post-title" itemprop="name headline">结合fastlane 组件进行自动化测试
+
               
             
           </h1>
@@ -354,7 +355,7 @@
                 
               
 
-              <time title="Created: 2018-11-28 15:33:17" itemprop="dateCreated datePublished" datetime="2018-11-28T15:33:17+08:00">2018-11-28</time>
+              <time title="Created: 2018-12-28 15:31:11" itemprop="dateCreated datePublished" datetime="2018-12-28T15:31:11+08:00">2018-12-28</time>
             
 
             
@@ -371,7 +372,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-28 19:59:41" itemprop="dateModified" datetime="2019-04-28T19:59:41+08:00">2019-04-28</time>
+                <time title="Modified: 2019-04-28 19:58:15" itemprop="dateModified" datetime="2019-04-28T19:58:15+08:00">2019-04-28</time>
               
             
           </span>
@@ -405,12 +406,20 @@
       
 
       
-        
-          
-            <p>用Xcode10 打包上传到AppStore，iOS9系统的机器频繁 Crash; 还是老老实实用Xcode 9.4.1打包吧，坑死了。xcode10.1会解决这个问题。<br><img src="https://upload-images.jianshu.io/upload_images/2078724-6691cab26282532e.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IMG_0643.JPG"></p>
+        <blockquote>
+<p>1.Xcode创建一个含有Unit Tests的项目<br>1）单元测试target设置<br>info中添加tests，options中勾选Gather coverage框。xcode9.2和xcode9.3位置不太一样，下面的图片是xcode9.3的配置 这个是测覆盖率用的<br>2.安装fastlane<br>1）sudo gem install fastlane -NV或是brew cask install fastlane我这里使用gem安装的<br>2）安装完了执行fastlane –version，确认下是否安装完成和当前使用的版本号。、&gt;3.初始化Fastlane<br>1）cd到你的项目目录执行<br>2）fastlane init<br>初始化成功后会在当前工程目录生成一个fastlane文件夹<br>Appfile主要存放App的apple_id team_id app_identifier等信息<br>Deliverfile中为发布的配置信息，一般情况用不到。<br>Fastfile是我们最应该关注的文件，也是我们的工作文件。<br>4) 添加组件<br>fastlane add_plugin xcpretty_report 用于生成测试报告<br>5）配置Fastfile相关信息<br><code>`</code><br>default_platform(:ios)</p>
+</blockquote>
+<p>platform :ios do</p>
+<p>desc “自动化测试”</p>
+<p>lane :unittest do<br>UI.message(“start  xcodebuild”)<br>xcodebuild(<br>test: true,<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>destination: “platform=iOS Simulator,name=iPhone XR,OS=12.1”,<br>)<br>UI.message(“success  xcodebuild”)</p>
+<p>xcpretty_report(<br>buildlog_path: ‘fastlane’,<br>output_path: ‘fastlane/reports’,<br>use_json_formatter: true<br>)  </p>
+<h1 id="gym"><a href="#gym" class="headerlink" title="gym("></a>gym(</h1><h1 id="xcpretty-report-html-”tests-html”"><a href="#xcpretty-report-html-”tests-html”" class="headerlink" title="xcpretty_report_html:”tests.html”,"></a>xcpretty_report_html:”tests.html”,</h1><h1 id><a href="#" class="headerlink" title=")"></a>)</h1><p>UI.message(“start  xcov”)<br>xcov(<br>scheme: “quickDemo”,<br>workspace: “quickDemo.xcworkspace”,<br>html_report: “true”,<br>json_report: “true”,<br>output_directory:”quickDemoesss”<br>)<br>UI.message(“success  xcov”)</p>
+<p>desc “读取覆盖率”<br>file = File.read(File.expand_path(“/Users/edz/Desktop/quickDemo/quickDemoesss/report.json”))<br>if file<br>data = JSON.parse(file)<br>UI.message(data)<br>UI.message(data[“coverage”])<br>else<br>UI.error(“Unable to open file!”)<br>return<br>end<br>end</p>
+<p>end<br><code>`</code>  </p>
+<blockquote>
+<p>6 执行 fastlane   unittest</p>
+</blockquote>
 
-          
-        
       
     </div>
 
@@ -433,169 +442,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/28/muitiple-error/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangwei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangwei">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/28/muitiple-error/" class="post-title-link" itemprop="url">multiple commands produce ''    日常error记载</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2018/11/28/xcode10/" rel="next" title="xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash">
+                <i class="fa fa-chevron-left"></i> xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/18/cocopodKu/" rel="prev" title="创建cocopods私有库">
+                创建cocopods私有库 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-28 15:27:22" itemprop="dateCreated datePublished" datetime="2018-10-28T15:27:22+08:00">2018-10-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-28 19:58:56" itemprop="dateModified" datetime="2019-04-28T19:58:56+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>下载别人demo 或者日常写项目中会遇到类似如下的bug：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-d0ff1f851fed80d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.36.png"><br>这个时候可以通过如下方式，删除info.plist 然后command+R 允许即可 完美：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2078724-e1661de22ec2bf8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-19 下午3.50.53.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -605,18 +477,15 @@
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -636,8 +505,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -685,6 +563,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gym"><span class="nav-number">1.</span> <span class="nav-text">gym(</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xcpretty-report-html-”tests-html”"><span class="nav-number">2.</span> <span class="nav-text">xcpretty_report_html:”tests.html”,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">)</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -816,6 +711,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -831,6 +730,8 @@
 
   
 
+
+  
 
 
   
