@@ -4,6 +4,9 @@
     <title><![CDATA[docker-compose 启动 mysql 报错]]></title>
     <url>%2F2019%2F04%2F29%2Fdocker-compose-up-mysql%2F</url>
     <content type="text"><![CDATA[docker-compose 启动 mysql 报错 (Error starting userland proxy: Bind for 0.0.0.0:3306 failed: port is already) ,这个是因为mac 本地的mysql已经启动了，并且占用了3306端口，这个时候需要进行如下操作： 方案1: 直接启动一个新的端口，但是使用时会出现错误，不能彻底解决。方案2: 找到mac 的设置页面 然后找到mysql： 进入mysql 中stop mysql server： 然后docker-compose up 重新启动 即可。]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
       <tags>
         <tag>docker</tag>
       </tags>
