@@ -7,6 +7,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>音视频</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[通过lame 进行音频格式转化]]></title>
@@ -15,6 +18,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>音视频</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[使用gitlab+fastlane进行自动化构建]]></title>
@@ -23,6 +29,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>自动化构建</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[iOS音频合并的多种方式]]></title>
@@ -31,6 +40,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>mix</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UItouch事件被tableview拦截]]></title>
@@ -39,6 +51,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>someBug</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[创建静态私有库]]></title>
@@ -47,6 +62,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>.a</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[创建cocopods私有库]]></title>
@@ -55,6 +73,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>组件化</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[结合fastlane 组件进行自动化测试]]></title>
@@ -63,6 +84,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>自动化</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[xcode10坑】用xcode10 打包上传到AppStore，iOS9 Crash]]></title>
@@ -71,6 +95,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>someBug</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[multiple commands produce '' 日常error记载]]></title>
@@ -79,6 +106,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>someBug</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Xcode 10 打包导出时报错Failed to verify bitcode in]]></title>
@@ -87,6 +117,9 @@
       <categories>
         <category>IOS</category>
       </categories>
+      <tags>
+        <tag>someBug</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
