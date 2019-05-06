@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ionic3.7照相和多图片选择]]></title>
+    <url>%2F2019%2F08%2F21%2Fionic3-7%E7%85%A7%E7%9B%B8%E5%92%8C%E5%A4%9A%E5%9B%BE%E7%89%87%E9%80%89%E6%8B%A9%2F</url>
+    <content type="text"><![CDATA[做了ionic项目也有一段时间了，把之前做的笔记分享出来，仅供大家参考，一起学习、一起进步，我感觉学一门语言，就是去找实际的案列直接应用它，在实践中学习，今天介绍的是通过ionic UI组件ImagePicker、Camera进行照片和照相功能 1)首先你要想用这个组件必须要添加它，通过命令行npm install –save @ionic-native/camera 安装camera;通过命令行npm install –save @ionic-native/image-picker 安装image-picker,但是注意除了这个命令还要安装插件cordova plugin add https:/github.com/Telerik-Verified-Plugins/ImagePicker.git，这个命令需要git，所以要按照git，这里就不多说了。 2)安装完命令就可以撸代码了，通过ActionSheetController 弹出选择框 选择照片和相机，代码如下：12345678910111213141516171819202122232425let actionSheet = this.actionSheetCtrl.create(&#123;title: &apos;&apos;,buttons: [&#123;text: &apos;拍照&apos;,handler: () =&gt; &#123;this.getPhoto();console.log(&apos;拍照 clicked&apos;);&#125;&#125;, &#123;text: &apos;相册&apos;,handler: () =&gt; &#123;this.getImage();console.log(&apos;相册 clicked&apos;);&#125;&#125;, &#123;text: &apos;取消&apos;,role: &apos;cancel&apos;,handler: () =&gt; &#123;console.log(&apos;取消 clicked&apos;);&#125;&#125;]&#125;);actionSheet.present(); 3)多文件选择：代码如下：123456789101112131415161718192021let n = $(&apos;.uploadimg_list&apos;).children().length;const optionss= &#123; maximumImagesCount:4-n&#125;;this.imagePicker.getPictures(optionss).then((results) =&gt; &#123;this.imageArr.splice(0, this.imageArr.length);let resultsfor (let i = 0; i &lt; results.length; i++) &#123;this.imageArr.push(results[i]);let img_list = $(&apos;.uploadimg_list&apos;);for (let i = 0; i &lt; this.imageArr.length; i++) &#123;resultess = &apos;&lt;div class=&quot;img_wrap&quot;&gt;![](&apos; + this.imageArr[i] + &apos;)&lt;div class=&quot;close_btn&quot;&gt;&lt;/div&gt;&lt;/div&gt;&apos;;&#125;img_list.append(resultess);sessionStorage.setItem(&apos;imgtxt_imgs&apos;, JSON.stringify(this.imageArr));&#125;&#125;, (err) =&gt; &#123;alert( &apos;未选择&apos;);&#125;); 4)照相机：代码如下123456789101112131415161718const options: CameraOptions = &#123;quality: 50,destinationType: this.cameras.DestinationType.DATA_URL,encodingType: this.cameras.EncodingType.JPEG,mediaType: this.cameras.MediaType.PICTURE&#125;this.cameras.getPicture(options).then((imageData) =&gt; &#123;//this.imageArr.splice(0, this.imageArr.length);let resultess;this.imageArr.push(imageData);let img_list = $(&apos;.uploadimg_list&apos;);resultess = &apos;&lt;div class=&quot;img_wrap&quot;&gt;![](&apos; + imageData + &apos;)&lt;div class=&quot;close_btn&quot;&gt;&lt;/div&gt;&lt;/div&gt;&apos;;img_list.append(resultess);sessionStorage.setItem(&apos;imgtxt_imgs&apos;, JSON.stringify(this.imageArr));&#125;, (err) =&gt; &#123;// Handle erroralert( &apos;未选择&apos;);&#125;);]]></content>
+      <categories>
+        <category>ionic</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[docker-compose 启动 mysql 报错]]></title>
     <url>%2F2019%2F04%2F29%2Fdocker-compose-up-mysql%2F</url>
     <content type="text"><![CDATA[docker-compose 启动 mysql 报错 (Error starting userland proxy: Bind for 0.0.0.0:3306 failed: port is already) ,这个是因为mac 本地的mysql已经启动了，并且占用了3306端口，这个时候需要进行如下操作： 方案1: 直接启动一个新的端口，但是使用时会出现错误，不能彻底解决。方案2: 找到mac 的设置页面 然后找到mysql： 进入mysql 中stop mysql server： 然后docker-compose up 重新启动 即可。]]></content>
@@ -21,6 +29,14 @@
       <tags>
         <tag>音视频</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[angular4跨域请求]]></title>
+    <url>%2F2019%2F04%2F16%2Fangular4%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%2F</url>
+    <content type="text"><![CDATA[angular4和其他框架一样，运用网络请求的时候都会出现跨域的情况（跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对javascript施加的安全限制），出现跨域以后怎么解决呢，今天介绍一种angular4-JSONP解决跨越,下面县介绍一下jsonp: jsonp动态生成sript标签 ，src 指向地址：ajax请求受同源策略影响，不允许进行跨域请求，而script标签src属性中的链接却可以访问跨域的js脚本，利用这个特性，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域。 进入正题直接看代码,首页在app.module.ts引入： imports: [ BrowserModule, HttpModule, RouterModule.forRoot(routes), IonicModule.forRoot(MyApp,{ tabsHideOnSubPages: &apos;true&apos; //隐藏全部子页面tabs }) ], 在所需要的面引入http: import {Http, ResponseOptions,Headers,HttpModule,URLSearchParams,Jsonp} from &quot;@angular/http&quot;; 然后注入: constructor(public jsonp:Jsonp,public http:Http) {} 带参数的, 注意一定要引入 URLSearchParams，要不请求是失败的: let d1 = new URLSearchParams(); d1.set(&apos;key&apos;, &apos;value&apos; ); d1.set(&apos;key&apos;, &apos;value&apos; ); d1.set(&apos;key&apos;, ‘value’); d1.set(&apos;format&apos;, &apos;json&apos;); d1.set(&apos;callback&apos;, &apos;JSONP_CALLBACK&apos;); this.jsonp.get(url,{ search: d1 }) .subscribe((response) =&gt; { let res = response.json() console.log(res) }, (error) =&gt; { console.error(error); }); 下面这两个参数是必须引入的，如果不存在jsonp可以不加2 1. d1.set(&apos;format&apos;, &apos;json&apos;); 2. d1.set(&apos;callback&apos;, &apos;JSONP_CALLBACK&apos;); 今天就介绍到这，谢谢]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[通过lame 进行音频格式转化]]></title>
@@ -54,6 +70,14 @@
       <tags>
         <tag>mix</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Angular4基本网络请求get、post方式]]></title>
+    <url>%2F2019%2F03%2F13%2FAngular4%E5%9F%BA%E6%9C%AC%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82get%E3%80%81post%E6%96%B9%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[angular2的网络请求和4还是有很大区别的，写一个项目的话肯定会用到http服务，除非你都是静态页，这只是一个最基本的、深入的拓展即可，希望能够帮助大家吧，谢谢首先如果你想用这个服务、那么你需要在app.module.ts中引入如下：1234567891011121314151617181920212223242526272829imports: [BrowserModule,HttpModule,RouterModule.forRoot(routes),IonicModule.forRoot(MyApp,&#123;tabsHideOnSubPages: &apos;true&apos; //隐藏全部子页面tabs&#125;)],``` 在所需要的面引入http:``` import &#123;Http, ResponseOptions,Headers,HttpModule,URLSearchParams&#125; from &quot;@angular/http&quot;;``` 然后注入:``` constructor(private http:Http) &#123;&#125;``` 不带参数的post``` this.http.post(randomUserUrl).map(res =&gt; res.json()).subscribe(function (data) &#123;alert(JSON.stringify(data));&#125;,err =&gt;&#123;console.error(&apos;ERROR&apos;, err);&#125;); 不带参数的get1234567this.http.get(randomUserUrl).map(res =&gt; res.json()) // (5).subscribe(data =&gt; &#123;alert(JSON.stringify(data));&#125;,err =&gt;&#123;console.error(&apos;ERROR&apos;, err);&#125;); 带参数的⚠️注意post与get传参数方式不一样！带参数的post, 注意一定要引入 URLSearchParams，要不请求是失败的: 12345678910let d1 = new URLSearchParams();d1.append(&apos;key&apos;, &apos;value&apos; );d1.append(&apos;key&apos;, &apos;value&apos; );d1.append(&apos;key&apos;, ‘value’);this.http.post(randomUserUrl,d1).map(res =&gt; res.json()).subscribe(function (data) &#123;alert(JSON.stringify(data));&#125;); 带参数的get 12345678910let dates =&#123;放参数keyvalue&#125;;this.http.get(randomUserUrl,&#123;params: dataes&#125;).map(res =&gt; res.json()) // (5).subscribe(data =&gt; &#123;alert(JSON.stringify(data));&#125;,err =&gt;&#123;console.error(&apos;ERROR&apos;, err);&#125;); 今天就介绍到这，谢谢]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[UItouch事件被tableview拦截]]></title>
@@ -133,11 +157,35 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[ionic ion-slide 高度问题]]></title>
+    <url>%2F2017%2F05%2F06%2Fionic-ion-slide-%E9%AB%98%E5%BA%A6%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[用ion-slide封装滑动视图组件，进行滑动导航相关操作，每一个slide下都会放一个页面，每个页面的高度又是不一样的，这个时候使用ion-slide会出现一个问题，高度最高只能有屏幕那么高，如果你在有tab栏的情况下使用，高度只有屏幕高screen-height-tab高这么高，这样显然是不可以的。我们解决问题要主要结合调试工具，看看里边那个类影响了他的高度，光百度，谷歌还是不行的，重要的是学会调试，学会理解。首先我们可以先解决tab高度，让她屏幕这么高：12345.scroll-content&#123;height: 100%;&#125;``` 然后在slides标签中增加 style=”height:auto” &lt;br&gt;在ts文件中slide自适应高度 $(‘.slide-zoom’).css(‘height’,date.data.length * 200); &lt;br&gt;注意在没有内容时候还是要通过动态设置，将其设置成 $(‘.slide-zoom’).css(‘height’,100%);`以防出现问题，谢谢大家！]]></content>
+      <categories>
+        <category>ionic</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2017%2F04%2F28%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
         <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[安装@angularcli的坑]]></title>
+    <url>%2F2017%2F01%2F06%2F%E5%AE%89%E8%A3%85-angularcli%E7%9A%84%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[之前写了个ionic项目，总感觉angluar知识懂的太少，前段时间花了一段时间深入学习了一些angular4的知识，之前iOS的时候也没有发文章的习惯，都是放在笔记本中了，老是享受别人的分享，自己也不自量力把学习和工作中遇见的坑分享一下，仅供学习，不对的地方欢迎改正。 1.之前用ionic写项目的时候用的还是npm3.00，node6.1，所以一开始安装@angularcli的时候老是报错，因为@angular需要nmp3.00 和node6.9以上才可以，而刚才node6配置的是angularcli，angularcli与@angluarcli是不一样的，旧版不能使用aot编译，且后期升级会有一堆麻烦， 2.错误❌You cannot use the new command inside an angular-cli project 这个时候需要找到node_modules/下的package.json，删除掉，重新ng new project 就可以了 3.如果报的gyp ERR! System Darwin 15.6.0 提示你没有权限，你可以尝试用1）.sudo npm uninstall -g @angular/cli 先删除 2）.sudo chown -R whoami /usr/local 3）.sudo npm i -g npm 更新npm 4）.npm install 5），sudo npm install -g @angular/cli 总的来说还是比较简单的，这里就不说具体的步骤，因为官网都有，谢谢查看。一起进步。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Angular4]]></title>
+    <url>%2F2017%2F01%2F06%2FAngular4%2F</url>
+    <content type="text"><![CDATA[Angular 是由谷歌开发与维护一个开发跨平台应用程序的框架，同时适用于各种平台 1.Angular 与 AngularJS 有什么区别 不再有Controller和 Scope 更好的组件化及代码复用 更好的移动端支持 引入了 RxJS 与 Observable 引入了 Zone.js，提供更加智能的变化检测 全新的命令行工具@angular cli 服务器渲染 2.Angular 与vue vue只关注web， 是个人主导的而angular的背后是谷歌团队 3.Angular 吸收了angular js reactjs的优点 4.下面是angular 的基本架构，angular就是有许多组件组成的树形结构]]></content>
+      <categories>
+        <category>前端</category>
       </categories>
   </entry>
 </search>
