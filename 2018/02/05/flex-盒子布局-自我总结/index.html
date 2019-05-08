@@ -96,17 +96,18 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="本篇仅限自我学习，参考阮一峰的flex布局http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html：一， flex-direction： 属性决定主轴的方向（即项目的排列方向） row（默认值）：主轴为水平方向，起点在左端。 row-reverse：主轴为水平方向，起点在右端。 column：主轴为垂直方向，起点在上沿。 column-rev">
+<meta name="keywords" content="flex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/10/28/hello-world/index.html">
+<meta property="og:title" content="flex 盒子布局 自我总结">
+<meta property="og:url" content="http://yoursite.com/2018/02/05/flex-盒子布局-自我总结/index.html">
 <meta property="og:site_name" content="不伟心">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="本篇仅限自我学习，参考阮一峰的flex布局http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html：一， flex-direction： 属性决定主轴的方向（即项目的排列方向） row（默认值）：主轴为水平方向，起点在左端。 row-reverse：主轴为水平方向，起点在右端。 column：主轴为垂直方向，起点在上沿。 column-rev">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-06T07:42:26.453Z">
+<meta property="og:updated_time" content="2019-05-08T02:48:50.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="flex 盒子布局 自我总结">
+<meta name="twitter:description" content="本篇仅限自我学习，参考阮一峰的flex布局http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html：一， flex-direction： 属性决定主轴的方向（即项目的排列方向） row（默认值）：主轴为水平方向，起点在左端。 row-reverse：主轴为水平方向，起点在右端。 column：主轴为垂直方向，起点在上沿。 column-rev">
 
 
 
@@ -114,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2016/10/28/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2018/02/05/flex-盒子布局-自我总结/">
 
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title>Hello World | 不伟心</title>
+  <title>flex 盒子布局 自我总结 | 不伟心</title>
   
 
 
@@ -331,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/28/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/05/flex-盒子布局-自我总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="dawei">
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">flex 盒子布局 自我总结
 
               
             
@@ -374,7 +375,7 @@
                 
               
 
-              <time title="Created: 2016-10-28 19:54:54" itemprop="dateCreated datePublished" datetime="2016-10-28T19:54:54+08:00">2016-10-28</time>
+              <time title="Created: 2018-02-05 10:47:25" itemprop="dateCreated datePublished" datetime="2018-02-05T10:47:25+08:00">2018-02-05</time>
             
 
             
@@ -391,7 +392,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-06 15:42:26" itemprop="dateModified" datetime="2019-05-06T15:42:26+08:00">2019-05-06</time>
+                <time title="Modified: 2019-05-08 10:48:50" itemprop="dateModified" datetime="2019-05-08T10:48:50+08:00">2019-05-08</time>
               
             
           </span>
@@ -408,7 +409,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
 
                 
                 
@@ -443,15 +444,48 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="本篇仅限自我学习，参考阮一峰的flex布局http-www-ruanyifeng-com-blog-2015-07-flex-grammar-html："><a href="#本篇仅限自我学习，参考阮一峰的flex布局http-www-ruanyifeng-com-blog-2015-07-flex-grammar-html：" class="headerlink" title="本篇仅限自我学习，参考阮一峰的flex布局http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html："></a>本篇仅限自我学习，参考阮一峰的flex布局<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</a>：</h3><h4 id="一，-flex-direction：-属性决定主轴的方向（即项目的排列方向）"><a href="#一，-flex-direction：-属性决定主轴的方向（即项目的排列方向）" class="headerlink" title="一， flex-direction： 属性决定主轴的方向（即项目的排列方向）"></a>一， flex-direction： 属性决定主轴的方向（即项目的排列方向）</h4><ul>
+<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+<li>row-reverse：主轴为水平方向，起点在右端。</li>
+<li>column：主轴为垂直方向，起点在上沿。</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿。<h4 id="二，-flex-wrap-：换不换行"><a href="#二，-flex-wrap-：换不换行" class="headerlink" title="二， flex-wrap ：换不换行"></a>二， flex-wrap ：换不换行</h4><h4 id="三，对齐方式"><a href="#三，对齐方式" class="headerlink" title="三，对齐方式"></a>三，对齐方式</h4><blockquote>
+<p>默认情况下row：</p>
+</blockquote>
+</li>
+<li>justify-content 表示的是X 轴的 对齐方式</li>
+<li>align-items 表示Y轴的对齐方式</li>
+<li>align-content属性 <strong>（一般是有多个对齐的轴线的时候）</strong><br><strong>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</strong>。 </li>
+</ul>
+<blockquote>
+<p>如果设置flex-direaction：column </p>
+<ul>
+<li>justify-content Y 轴的 对齐方式</li>
+<li>align-items 表示X轴的对齐方式</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>水平和垂直剧中或者水平剧中，垂直至底  需要设置两个轴：</p>
+<ul>
+<li>justify-content: center;</li>
+<li>align-items: center;<br>align-self属性  属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</li>
+</ul>
+</blockquote>
+<h3 id="四，-flex-flex属性是flex-grow-flex-shrink-和-flex-basis的简写，默认值为0-1-auto。后两个属性可选。"><a href="#四，-flex-flex属性是flex-grow-flex-shrink-和-flex-basis的简写，默认值为0-1-auto。后两个属性可选。" class="headerlink" title="四，  flex :flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。"></a>四，  flex :flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</h3><h5 id="flex-shrink属性"><a href="#flex-shrink属性" class="headerlink" title="flex-shrink属性"></a>flex-shrink属性</h5><ul>
+<li>如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。<h5 id="flex-basis属性"><a href="#flex-basis属性" class="headerlink" title="flex-basis属性"></a>flex-basis属性</h5></li>
+<li>项目占据的主轴空间 不会被其他的项目影响（它的默认值为auto），如果主尺寸不为 auto，则使用值采取主尺寸之值；如果也是 auto，则使用值为 content。</li>
+<li>content：指根据该子元素的内容自动布局。有的用户代理没有实现取 content 值，等效的替代方案是 flex-basis 和主尺寸都取 auto。</li>
+<li>百分比：根据其包含块（即伸缩父容器）的主尺寸计算。如果包含块的主尺寸未定义（即父容器的主尺寸取决于子元素），则计算结果和设为 auto 一样。</li>
+</ul>
+<p>#####flex-grow 属性 </p>
+<ul>
+<li>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</li>
+<li>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</li>
+</ul>
+<h5 id="（1）-当-flex-取值为一个非负数字，则该数字为-flex-grow-值，flex-shrink-取-1，flex-basis-取-0-，如下是等同的："><a href="#（1）-当-flex-取值为一个非负数字，则该数字为-flex-grow-值，flex-shrink-取-1，flex-basis-取-0-，如下是等同的：" class="headerlink" title="（1）.当 flex 取值为一个非负数字，则该数字为 flex-grow 值，flex-shrink 取 1，flex-basis 取 0%，如下是等同的："></a>（1）.当 flex 取值为一个非负数字，则该数字为 flex-grow 值，flex-shrink 取 1，flex-basis 取 0%，如下是等同的：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;flex: 1;&#125;</span><br><span class="line">.item &#123;</span><br><span class="line">flex-grow: 1; 的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）</span><br><span class="line">flex-shrink: 1; 默认为1，即如果空间不足，该项目将缩小。</span><br><span class="line">flex-basis: 0%;   项目占据的主轴空间 不会被其他的项目影响（它的默认值为auto）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#####（2）当 flex 取值为 none，则计算值为 0 0 auto，如下是等同的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;flex: none;&#125;</span><br><span class="line">.item &#123;</span><br><span class="line">flex-grow: 0;</span><br><span class="line">flex-shrink: 0;</span><br><span class="line">flex-basis: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####（3 ）当 flex 取值为一个长度或百分比，则视为 flex-basis 值，flex-grow 取 1，flex-shrink 取 1，有如下等同情况（注意 0% 是一个百分比而不是一个非负数字）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.item-1 &#123;flex: 0%;&#125;</span><br><span class="line">.item-1 &#123;</span><br><span class="line">flex-grow: 1;</span><br><span class="line">flex-shrink: 1;</span><br><span class="line">flex-basis: 0%;</span><br><span class="line">&#125;</span><br><span class="line">.item-2 &#123;flex: 24px;&#125;</span><br><span class="line">.item-1 &#123;</span><br><span class="line">flex-grow: 1;</span><br><span class="line">flex-shrink: 1;</span><br><span class="line">flex-basis: 24px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####（4 ）当 flex 取值为两个非负数字，则分别视为 flex-grow 和 flex-shrink 的值，flex-basis 取 0%，如下是等同的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;flex: 2 3;&#125;</span><br><span class="line">.item &#123;</span><br><span class="line">flex-grow: 2;</span><br><span class="line">flex-shrink: 3;</span><br><span class="line">flex-basis: 0%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####（5）当 flex 取值为一个非负数字和一个长度或百分比，则分别视为 flex-grow 和 flex-basis 的值，flex-shrink 取 1，如下是等同的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;flex: 2333 3222px;&#125;</span><br><span class="line">.item &#123;</span><br><span class="line">flex-grow: 2333;</span><br><span class="line">flex-shrink: 1;</span><br><span class="line">flex-basis: 3222px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -473,6 +507,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/flex/" rel="tag"># flex</a>
+          
+        </div>
+      
 
       
       
@@ -482,14 +522,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/21/ionic3-7照相和多图片选择/" rel="next" title="ionic3.7照相和多图片选择">
+                <i class="fa fa-chevron-left"></i> ionic3.7照相和多图片选择
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/06/Angular4/" rel="prev" title="Angular4">
-                Angular4 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/28/xcodeBug/" rel="prev" title="Xcode 10 打包导出时报错Failed to verify bitcode in">
+                Xcode 10 打包导出时报错Failed to verify bitcode in <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -661,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本篇仅限自我学习，参考阮一峰的flex布局http-www-ruanyifeng-com-blog-2015-07-flex-grammar-html："><span class="nav-number">1.</span> <span class="nav-text">本篇仅限自我学习，参考阮一峰的flex布局http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一，-flex-direction：-属性决定主轴的方向（即项目的排列方向）"><span class="nav-number">1.1.</span> <span class="nav-text">一， flex-direction： 属性决定主轴的方向（即项目的排列方向）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二，-flex-wrap-：换不换行"><span class="nav-number">1.2.</span> <span class="nav-text">二， flex-wrap ：换不换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三，对齐方式"><span class="nav-number">1.3.</span> <span class="nav-text">三，对齐方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四，-flex-flex属性是flex-grow-flex-shrink-和-flex-basis的简写，默认值为0-1-auto。后两个属性可选。"><span class="nav-number">2.</span> <span class="nav-text">四，  flex :flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#flex-shrink属性"><span class="nav-number">2.0.1.</span> <span class="nav-text">flex-shrink属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#flex-basis属性"><span class="nav-number">2.0.2.</span> <span class="nav-text">flex-basis属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）-当-flex-取值为一个非负数字，则该数字为-flex-grow-值，flex-shrink-取-1，flex-basis-取-0-，如下是等同的："><span class="nav-number">2.0.3.</span> <span class="nav-text">（1）.当 flex 取值为一个非负数字，则该数字为 flex-grow 值，flex-shrink 取 1，flex-basis 取 0%，如下是等同的：</span></a></li></ol></li></ol></div>
             
 
           </div>
